@@ -2,6 +2,32 @@
   "use strict";
 
   /**
+   * Полная перезагрузка (F5 / Ctrl+R): сбрасываем якорь в адресе и скролл в начало.
+   * Иначе после клика по доку (например «Контакты») остаётся ...#contacts — обновление снова
+   * открывает этот блок, хотя ожидается старт с верха лендинга.
+   */
+  function resetScrollAfterReload() {
+    var isReload = false;
+    try {
+      var entries = performance.getEntriesByType("navigation");
+      if (entries && entries.length && entries[0].type === "reload") isReload = true;
+    } catch (e) {}
+    if (!isReload && typeof performance !== "undefined" && performance.navigation) {
+      try {
+        if (performance.navigation.type === 1) isReload = true;
+      } catch (e2) {}
+    }
+    if (!isReload) return;
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    try {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    } catch (e3) {}
+    window.scrollTo(0, 0);
+  }
+
+  /**
    * Без якоря в URL: стартуем с верха страницы.
    * Иначе браузер часто восстанавливает прежний скролл (кажется «перебросом» на Услуги и т.д.),
    * а при #fragment перезагрузка по закону остаётся на том же якоре.
@@ -15,10 +41,16 @@
     window.scrollTo(0, 0);
   }
 
+  resetScrollAfterReload();
   scrollToTopIfNoHash();
+  window.addEventListener("pageshow", function (ev) {
+    if (ev.persisted) return;
+    resetScrollAfterReload();
+  });
   window.addEventListener(
     "load",
     function () {
+      resetScrollAfterReload();
       scrollToTopIfNoHash();
     },
     { once: true }

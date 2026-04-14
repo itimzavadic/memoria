@@ -1,41 +1,29 @@
-/* Мемория — светлая тема: слоновая кость, мрамор + гранитная зернистость, золото */
+/* Мемория — угольная тёмная тема, золото; лучи (sun-from-logo) + глубина (logo-ambient) */
 
 :root {
-  color-scheme: light;
-  /* Слоновая кость — теплее, без «белого стирола» */
-  --bg-deep: #e4d9cc;
-  --bg-raised: #ebe1d4;
-  --bg-panel: #efe6da;
-  --stone: #e8dfd2;
-  --stone-edge: #d4c9b8;
-  --text: #3a3228;
-  --text-muted: #6a5c4d;
-  --text-on-gold: #1a1510;
-  /* Премиальное золото — насыщенное, читается на светлых поверхностях */
-  --gold-dim: #b8860b;
-  --gold-muted: #8a6622;
-  --gold-line: rgba(138, 102, 40, 0.38);
-  --gold-glow: rgba(196, 148, 52, 0.28);
-  --gold-ui-fill: rgba(212, 168, 72, 0.22);
-  --rim-light: rgba(255, 251, 244, 0.45);
-  --shadow-soft: rgba(55, 42, 30, 0.06);
-  --shadow-medium: rgba(45, 35, 28, 0.09);
-  --shadow-deep: rgba(38, 30, 24, 0.14);
-  --gold-heading: #7a5a12;
-  --gold-heading-bright: #6b4d0e;
-  /* Тайл «мраморного» шума (тёплый серо-бежевый) — поверх слоновой кости */
-  --marble-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.038' numOctaves='4' stitchTiles='stitch' seed='42'/%3E%3CfeColorMatrix type='matrix' values='0.32 0 0 0 0.88 0 0.28 0 0 0.82 0 0 0.24 0 0.76 0 0 0 0.14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)' opacity='0.28'/%3E%3C/svg%3E");
-  /* Панели карточек: слоновая + лёгкие прожилки без отдельного файла */
-  --marble-panel: linear-gradient(118deg, transparent 44%, rgba(212, 198, 178, 0.22) 49.5%, transparent 54%),
-    linear-gradient(72deg, rgba(200, 188, 172, 0.12) 0%, transparent 35%, rgba(220, 208, 190, 0.1) 100%),
-    linear-gradient(168deg, rgba(236, 228, 216, 0.9) 0%, rgba(228, 218, 204, 0.85) 100%);
-  /* Гранит: крупное зерно + мелкие вкрапления (тёплый серо-коричневый) */
-  --granite-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256' viewBox='0 0 256 256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.046' numOctaves='5' stitchTiles='stitch' seed='17'/%3E%3CfeColorMatrix type='matrix' values='0.32 0.28 0.24 0 0.06 0.28 0.26 0.22 0 0.05 0.24 0.22 0.2 0 0.04 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.34'/%3E%3C/svg%3E");
-  --granite-noise-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.095' numOctaves='4' stitchTiles='stitch' seed='53'/%3E%3CfeColorMatrix type='matrix' values='0.3 0.24 0.18 0 0.08 0.26 0.22 0.16 0 0.07 0.22 0.18 0.14 0 0.06 0 0 0 0.48 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.26'/%3E%3C/svg%3E");
-  /* То же зерно, слабее — карточки, шапка, подвал */
-  --granite-noise-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256' viewBox='0 0 256 256'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.046' numOctaves='5' stitchTiles='stitch' seed='17'/%3E%3CfeColorMatrix type='matrix' values='0.32 0.28 0.24 0 0.06 0.28 0.26 0.22 0 0.05 0.24 0.22 0.2 0 0.04 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.14'/%3E%3C/svg%3E");
-  /* Фото крупной плиты (content/) — через ::before у блоков, иначе теряется под градиентами */
-  --granite-photo: url("../content/big%20granit.resize1.jpeg");
+  color-scheme: dark;
+  --bg-deep: #121216;
+  --bg-raised: #1d1d22;
+  --bg-panel: #25252b;
+  --stone: #2d2d35;
+  --stone-edge: #3b3b45;
+  --text: #eceae6;
+  --text-muted: #aba79d;
+  /* Текст на золотых кнопках */
+  --text-on-gold: #121210;
+  --gold-dim: #d4b56a;
+  --gold-muted: #a89255;
+  --gold-line: rgba(210, 179, 102, 0.28);
+  --gold-glow: rgba(210, 179, 102, 0.1);
+  /* Затемнение поверх фото + векторное зерно (как в прошлой версии с «мраморной» темой) — шум не размывается при cover/Retina */
+  --granit-veil-1: rgba(12, 11, 10, 0.88);
+  --granit-veil-2: rgba(16, 14, 12, 0.8);
+  --granit-veil-3: rgba(22, 20, 18, 0.9);
+  --granit-grain-coarse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256' viewBox='0 0 256 256'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.046' numOctaves='5' stitchTiles='stitch' seed='17'/%3E%3CfeColorMatrix type='matrix' values='0.32 0.28 0.24 0 0.06 0.28 0.26 0.22 0 0.05 0.24 0.22 0.2 0 0.04 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.14'/%3E%3C/svg%3E");
+  --granit-grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.095' numOctaves='4' stitchTiles='stitch' seed='53'/%3E%3CfeColorMatrix type='matrix' values='0.3 0.24 0.18 0 0.08 0.26 0.22 0.16 0 0.07 0.22 0.18 0.14 0 0.06 0 0 0 0.48 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.26'/%3E%3C/svg%3E");
+  --gold-ui-fill: rgba(210, 179, 102, 0.14);
+  --gold-heading: #e6cf8a;
+  --gold-heading-bright: #f2e0a8;
   --header-h: 4.25rem;
   --dock-h: 3.65rem;
   --font-sans: "Manrope", system-ui, sans-serif;
@@ -60,28 +48,6 @@ html {
   min-height: 100vh;
   min-height: 100dvh;
   background-color: var(--bg-deep);
-  background-image:
-    var(--granite-noise) 0 0 / 256px 256px repeat,
-    var(--granite-noise-fine) 0 0 / 132px 132px repeat,
-    var(--marble-noise),
-    linear-gradient(118deg, transparent 46%, rgba(218, 202, 182, 0.35) 49.5%, transparent 53%),
-    linear-gradient(72deg, transparent 38%, rgba(188, 178, 162, 0.14) 42%, transparent 46%),
-    linear-gradient(168deg, rgba(198, 186, 170, 0.1) 0%, transparent 40%),
-    radial-gradient(ellipse 110% 75% at 50% -18%, rgba(242, 234, 222, 0.75) 0%, transparent 52%),
-    radial-gradient(ellipse 75% 55% at 100% 28%, rgba(228, 216, 198, 0.45) 0%, transparent 48%),
-    radial-gradient(ellipse 65% 50% at 0% 65%, rgba(220, 208, 192, 0.35) 0%, transparent 52%);
-  background-size:
-    auto,
-    auto,
-    220px 220px,
-    auto,
-    auto,
-    auto,
-    auto,
-    auto,
-    auto;
-  background-repeat: repeat, repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-attachment: fixed;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -92,8 +58,8 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
-  background: transparent;
-  background-color: transparent;
+  background: var(--bg-deep);
+  background-color: var(--bg-deep);
   min-height: 100vh;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
@@ -107,34 +73,148 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  opacity: 0.22;
+  opacity: 0.5;
   background-image:
-    radial-gradient(ellipse 120% 80% at 15% 0%, rgba(184, 154, 110, 0.12) 0%, transparent 52%),
-    radial-gradient(ellipse 90% 55% at 100% 25%, rgba(200, 188, 170, 0.08) 0%, transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(176, 160, 140, 0.07) 0%, transparent 42%);
-}
-
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.52;
-  mix-blend-mode: multiply;
-  background-image: var(--granite-noise), var(--granite-noise-fine);
-  background-size: 240px 240px, 110px 110px;
-  background-repeat: repeat, repeat;
+    radial-gradient(ellipse 120% 80% at 15% 0%, rgba(212, 181, 106, 0.07) 0%, transparent 52%),
+    radial-gradient(ellipse 90% 55% at 100% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 48%),
+    radial-gradient(circle at 50% 100%, rgba(212, 181, 106, 0.05) 0%, transparent 42%);
 }
 
 .grain::after {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.05;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Свет от области логотипа (левый верх): сияние + тонкие лучи + «пыль» в лучах */
+/* Логотип в глубине фона: расставленные копии + мягкий повтор по длине страницы */
+.logo-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.logo-ambient__m {
+  position: absolute;
+  width: min(42vw, 360px);
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  opacity: 0.07;
+  filter: blur(0.35px);
+  mix-blend-mode: normal;
+  user-select: none;
+}
+
+.logo-ambient__m--vert {
+  width: min(20vw, 150px);
+  opacity: 0.036;
+}
+
+.logo-ambient__m:nth-child(1) {
+  top: 5%;
+  left: -10%;
+  transform: rotate(-11deg) scale(0.95);
+}
+
+.logo-ambient__m:nth-child(2) {
+  top: 22%;
+  right: -6%;
+  left: auto;
+  transform: rotate(7deg) scale(0.88);
+  opacity: 0.042;
+}
+
+.logo-ambient__m:nth-child(3) {
+  top: 48%;
+  left: 58%;
+  transform: rotate(-5deg) scale(0.72);
+  opacity: 0.038;
+}
+
+.logo-ambient__m:nth-child(4) {
+  top: 14%;
+  left: 32%;
+  transform: rotate(19deg) scale(0.65);
+  opacity: 0.03;
+}
+
+.logo-ambient__m:nth-child(5) {
+  top: 68%;
+  right: 4%;
+  left: auto;
+  transform: rotate(4deg) scale(0.78);
+  opacity: 0.045;
+}
+
+.logo-ambient__m:nth-child(6) {
+  top: 82%;
+  left: 8%;
+  transform: rotate(-8deg) scale(0.7);
+  opacity: 0.034;
+}
+
+.logo-ambient__m:nth-child(7) {
+  top: 36%;
+  left: -4%;
+  transform: rotate(-16deg) scale(0.55);
+  opacity: 0.028;
+}
+
+.logo-ambient__m:nth-child(8) {
+  top: 58%;
+  right: 12%;
+  left: auto;
+  transform: rotate(10deg) scale(0.68);
+  opacity: 0.04;
+}
+
+.logo-ambient__m:nth-child(9) {
+  top: 3%;
+  right: 18%;
+  left: auto;
+  transform: rotate(-3deg) scale(0.62);
+  opacity: 0.033;
+}
+
+.logo-ambient-tile {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("../content/Logo horizontal gold.png");
+  background-repeat: repeat;
+  background-size: clamp(130px, 18vw, 220px) auto;
+  background-position: 40% 0;
+  /* Без rotate: высокий блок + угол давали огромную ширину по оси X и требовали overflow-x на main,
+     из‑за чего в браузерах ломался корневой скролл и ползунок */
+  mix-blend-mode: soft-light;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 12%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0.75) 55%,
+    rgba(0, 0, 0, 0.45) 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.45) 12%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0.75) 55%,
+    rgba(0, 0, 0, 0.45) 88%,
+    transparent 100%
+  );
+}
+
+/* Свет от «солнца» у шапки (левый верх): диск + conic-лучи + пыль — та же геометрия, что в светлой теме;
+   на угле — screen + чуть ярче, чем multiply на слоновой кости */
 .sun-from-logo {
   pointer-events: none;
   position: fixed;
@@ -146,120 +226,125 @@ body {
 .sun-from-logo::before {
   content: "";
   position: absolute;
-  width: min(175vmin, 1120px);
-  height: min(175vmin, 1120px);
-  left: max(-14vmin, calc(-1 * env(safe-area-inset-left, 0px)));
-  top: max(-16vmin, calc(-6px - env(safe-area-inset-top, 0px)));
-  transform: translate(-14%, -22%);
-  mix-blend-mode: multiply;
+  left: env(safe-area-inset-left, 0px);
+  top: env(safe-area-inset-top, 0px);
+  width: min(132vmin, 980px);
+  height: min(132vmin, 980px);
+  transform-origin: 0 0;
+  mix-blend-mode: screen;
+  filter: blur(0.35px);
   background: radial-gradient(
-    circle at 40% 40%,
-    rgba(255, 252, 248, 0.55) 0%,
-    rgba(236, 214, 170, 0.22) 14%,
-    rgba(220, 190, 130, 0.08) 32%,
-    transparent 56%
+    circle at 0% 0%,
+    rgba(255, 252, 248, 0.72) 0%,
+    rgba(236, 214, 170, 0.42) 14%,
+    rgba(220, 190, 130, 0.2) 32%,
+    transparent 58%
   );
   animation: sun-from-logo-core 8s ease-in-out infinite alternate;
 }
 
-.sun-from-logo::after {
-  content: "";
+/* Лучи + пыль только внутри лучей; вращение одной анимацией на контейнере */
+.sun-from-logo__rays {
   position: absolute;
-  left: -38%;
-  top: -34%;
-  width: 178%;
-  height: 195%;
+  left: env(safe-area-inset-left, 0px);
+  top: env(safe-area-inset-top, 0px);
+  width: max(220vw, 220vh);
+  height: max(220vw, 220vh);
+  transform-origin: 0 0;
+  pointer-events: none;
   background: repeating-conic-gradient(
-    from -36deg at 12% 8%,
+    from -36deg at 0% 0%,
     transparent 0deg 2.4deg,
-    rgba(212, 175, 88, 0.06) 2.4deg 3.5deg,
+    rgba(212, 175, 88, 0.12) 2.4deg 3.5deg,
     transparent 3.5deg 7.8deg,
-    rgba(200, 165, 80, 0.05) 7.8deg 8.85deg,
+    rgba(200, 165, 80, 0.1) 7.8deg 8.85deg,
     transparent 8.85deg 14deg,
-    rgba(220, 188, 110, 0.045) 14deg 15deg,
+    rgba(220, 188, 110, 0.09) 14deg 15deg,
     transparent 15deg 21deg
   );
-  mix-blend-mode: multiply;
-  opacity: 0.42;
+  mix-blend-mode: screen;
+  opacity: 0.55;
   animation: sun-from-logo-rays 15s ease-in-out infinite alternate;
 }
 
 .sun-from-logo__dust {
   position: absolute;
-  /* Шире/выше вьюпорта: при translate не всплывает «пустой» край за overflow родителя */
-  inset: -28%;
+  /* Запас влево/вокруг: нет «ножа» по левому краю блока лучей; фаза тайла не совпадает с кромкой экрана */
+  top: -6%;
+  right: -4%;
+  bottom: -6%;
+  left: -18%;
   display: block;
+  pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 256px 256px;
-  animation:
-    sun-from-logo-dust-move 11s linear infinite,
-    sun-from-logo-dust-glint 4.5s ease-in-out infinite alternate;
+  background-size: 220px 220px;
+  background-position: 47% 38%;
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  filter: blur(0.55px);
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 4%,
+    #000 14%,
+    #000 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 4%,
+    #000 14%,
+    #000 100%
+  );
+  animation: sun-from-logo-dust-glint 4.5s ease-in-out infinite alternate;
 }
 
 @keyframes sun-from-logo-core {
   from {
-    opacity: 0.18;
-    transform: translate(-18%, -26%) scale(0.94);
+    opacity: 0.35;
+    transform: scale(0.92);
   }
   to {
-    opacity: 0.48;
-    transform: translate(-6%, -12%) scale(1.14);
+    opacity: 0.85;
+    transform: scale(1.12);
   }
 }
 
 @keyframes sun-from-logo-rays {
   from {
     transform: rotate(-6deg) scale(0.98);
-    opacity: 0.2;
+    opacity: 0.38;
   }
   to {
-    transform: rotate(7deg) scale(1.1);
-    opacity: 0.45;
-  }
-}
-
-@keyframes sun-from-logo-dust-move {
-  0% {
-    transform: translate(0, 0);
-  }
-  33% {
-    transform: translate(-2.5%, 1.2%);
-  }
-  66% {
-    transform: translate(-4.2%, 2.8%);
-  }
-  100% {
-    transform: translate(-5.5%, 3.6%);
+    transform: rotate(7deg) scale(1.06);
+    opacity: 0.78;
   }
 }
 
 @keyframes sun-from-logo-dust-glint {
   from {
-    opacity: 0.04;
+    opacity: 0.14;
   }
   to {
-    opacity: 0.1;
+    opacity: 0.36;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .logo-ambient__m,
   .hero-logo-bg {
     filter: none;
   }
 
-  .grain::before {
-    opacity: 0.28;
-  }
-
   .sun-from-logo::before,
-  .sun-from-logo::after,
+  .sun-from-logo__rays,
   .sun-from-logo__dust {
     animation: none;
   }
 
   .sun-from-logo__dust {
-    opacity: 0.03;
+    opacity: 0.18;
   }
 
   .section-head__stroke-path {
@@ -312,12 +397,7 @@ body {
   min-height: var(--header-h);
   padding: 0.5rem 1.25rem;
   padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
-  background-color: rgba(242, 236, 228, 0.97);
-  background-image:
-    var(--granite-noise-soft) 0 0 / 200px 200px repeat,
-    var(--granite-noise-fine) 0 0 / 100px 100px repeat,
-    linear-gradient(180deg, rgba(255, 252, 248, 0.98) 0%, rgba(245, 239, 230, 0.97) 55%, rgba(238, 232, 224, 0.98) 100%);
-  background-repeat: repeat, repeat, no-repeat;
+  background: linear-gradient(180deg, rgba(24, 24, 26, 0.98) 0%, rgba(12, 12, 14, 0.98) 100%);
   border-bottom: 1px solid var(--gold-line);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -355,7 +435,6 @@ body {
   white-space: nowrap;
 }
 
-/* На узких экранах номер у кнопки не показываем — одна строка, звонок по кнопке (тот же tel:) */
 @media (max-width: 720px) {
   .site-header .header-phone {
     display: none;
@@ -406,13 +485,9 @@ body {
   z-index: 55;
   height: calc(var(--dock-h) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  background-color: rgba(238, 232, 222, 0.98);
-  background-image:
-    var(--granite-noise-soft) 0 0 / 192px 192px repeat,
-    linear-gradient(0deg, rgba(248, 244, 238, 0.99) 0%, rgba(236, 230, 220, 0.98) 45%, rgba(242, 236, 228, 0.99) 100%);
-  background-repeat: repeat, no-repeat;
+  background: linear-gradient(0deg, rgba(22, 22, 24, 0.98) 0%, rgba(10, 10, 12, 0.97) 100%);
   border-top: 1px solid var(--gold-line);
-  box-shadow: 0 -8px 28px var(--shadow-medium);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.45);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
@@ -486,18 +561,18 @@ body {
 
 .site-dock-item:hover,
 .site-dock-item:focus-visible {
-  color: var(--gold-heading);
+  color: var(--text);
   outline: none;
 }
 
 .site-dock-item.is-active {
-  color: var(--gold-muted);
+  color: var(--gold-dim);
   border-top-color: var(--gold-dim);
 }
 
 .site-dock-item--cta {
-  color: var(--gold-heading);
-  background: var(--gold-ui-fill);
+  color: var(--text);
+  background: rgba(210, 179, 102, 0.24);
   border: 1px solid var(--gold-line);
   border-radius: var(--radius);
   letter-spacing: 0.1em;
@@ -525,6 +600,8 @@ body {
 main {
   position: relative;
   z-index: 1;
+  /* Без заливки: иначе main перекрывает fixed .grain / .sun-from-logo (z-index: 0) — лучи и пыль не видны */
+  background: transparent;
   background-color: transparent;
 }
 
@@ -538,119 +615,65 @@ main {
   margin-inline: auto;
 }
 
-/* Калькулятор: высота по контенту; справа колонка тариф → кнопка → результат */
+/* Калькулятор: высота от контента + min/max, без сплющенного aspect-ratio */
 .calc-panel {
   --calc-panel-side: min(36rem, calc(100vw - 2.5rem));
   width: var(--calc-panel-side);
   max-width: 100%;
+  min-height: clamp(27rem, 54dvh, 33.5rem);
+  max-height: min(92dvh, 40rem);
   margin-inline: auto;
   padding: clamp(0.85rem, 2.2vw, 1.25rem) clamp(0.85rem, 2.2vw, 1.35rem);
   border: 1px solid var(--gold-line);
   border-radius: var(--radius);
-  position: relative;
-  isolation: isolate;
-  background-color: var(--bg-panel);
+  background: var(--bg-panel);
   box-shadow:
-    inset 0 1px 0 var(--rim-light),
-    0 4px 24px var(--shadow-medium);
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 24px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Фото под текстурами: фон самой панели не рисует «верх» над ::before */
-.calc-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background-color: var(--bg-panel);
-  background-image: var(--granite-photo);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.58;
-  mix-blend-mode: multiply;
-}
-
-.calc-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: inherit;
-  background-image: var(--granite-noise-soft), var(--granite-noise-fine), var(--marble-noise), var(--marble-panel);
-  background-size: 200px 200px, 100px 100px, 200px 200px, auto;
-  background-repeat: repeat, repeat, repeat, no-repeat;
-}
-
+/* Одна сетка на всю форму: заголовок на всю ширину, затем 2×2 — размеры | тариф, кнопка | результат */
 .calc-panel > .calc-form {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.1rem;
+  align-items: start;
+  flex: 1;
   min-height: 0;
 }
 
-/* ПК: слева только размеры (на всю высоту справа), справа — тариф, кнопка, итог в одной колонке */
-.calc-panel__layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: auto auto auto;
-  column-gap: 1.1rem;
-  row-gap: 0.5rem;
-  align-items: start;
-  align-content: start;
-  justify-content: start;
-}
-
-.calc-panel__aside {
-  display: contents;
+.calc-panel .calc-form > .section-head--calc {
+  grid-column: 1 / -1;
 }
 
 .calc-panel__dims {
-  grid-column: 1;
-  grid-row: 1 / -1;
-  align-self: start;
   min-width: 0;
-  overflow: visible;
-  padding-right: 0.15rem;
+  overflow-y: auto;
 }
 
 .calc-panel__tariff {
-  grid-column: 2;
-  grid-row: 1;
   min-width: 0;
-  overflow: visible;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
+  overflow-y: auto;
 }
 
 .calc-panel__submit {
-  grid-column: 2;
-  grid-row: 2;
   align-self: stretch;
   width: 100%;
 }
 
 .calc-panel__outcome {
-  grid-column: 2;
-  grid-row: 3;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  overflow: visible;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.25rem 0.3rem;
 }
 
 .calc-result-idle {
@@ -671,16 +694,16 @@ main {
 #calculator .section-head--calc {
   max-width: none;
   flex-shrink: 0;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0;
   text-align: center;
 }
 
 #calculator .section-head--calc h2 {
   font-size: clamp(1.2rem, 2.8vw, 1.55rem);
   text-shadow:
-    0 0 22px rgba(212, 165, 72, 0.38),
-    0 0 1px rgba(255, 252, 248, 0.9),
-    0 1px 2px rgba(62, 48, 32, 0.1);
+    0 0 22px rgba(212, 165, 72, 0.35),
+    0 0 1px rgba(14, 12, 10, 0.95),
+    0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 #calculator .section-head--calc .section-head__plate {
@@ -700,15 +723,6 @@ main {
   margin-bottom: 0.9rem;
 }
 
-#calculator .calc-panel .field > span .calc-unit {
-  text-decoration: none;
-  text-transform: none;
-  font-weight: 600;
-  color: var(--gold-muted);
-  letter-spacing: 0.06em;
-  cursor: help;
-}
-
 #calculator .calc-panel .calc-dims .field:last-child {
   margin-bottom: 0;
 }
@@ -723,27 +737,12 @@ main {
   gap: 0.65rem;
 }
 
-/* Блок «Тариф» — div + role=group (см. разметку): предсказуемый зазор подпись → кнопки */
-#calculator .calc-panel__tariff {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-#calculator .calc-panel__tariff .calc-fieldset-legend {
-  margin: 0 0 0.5rem;
-  flex-shrink: 0;
-}
-
-#calculator .calc-panel__dims .calc-fieldset-legend {
-  margin: 0 0 0.5rem;
-}
-
 #calculator .calc-tariff-btn {
   padding: 0.78rem 0.9rem;
-  box-sizing: border-box;
+}
+
+#calculator .calc-fieldset--tariff {
+  margin-bottom: 0;
 }
 
 #calculator .calc-panel__dims .calc-fieldset {
@@ -776,57 +775,27 @@ main {
     overflow: visible;
   }
 
-  .calc-panel__layout {
-    display: flex;
-    flex-direction: column;
+  .calc-panel > .calc-form {
+    grid-template-columns: 1fr;
     gap: 1rem;
-    grid-template-rows: none;
   }
 
-  .calc-panel__aside {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    margin-left: 0;
-    padding: 1rem 0.5rem 0.5rem;
-    border-left: none;
-    border-top: 1px solid var(--gold-line);
-    background: transparent;
+  .calc-panel .calc-form > .section-head--calc {
+    grid-column: 1;
   }
 
   .calc-panel__dims {
-    grid-column: auto;
-    grid-row: auto;
     overflow: visible;
-    padding-right: 0;
   }
 
   .calc-panel__tariff {
-    grid-column: auto;
-    grid-row: auto;
-    margin-left: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    border-left: none;
-    background: transparent;
-    border-radius: 0;
-  }
-
-  .calc-panel__submit {
-    grid-column: auto;
-    grid-row: auto;
-    margin-top: 0;
+    overflow: visible;
   }
 
   .calc-panel__outcome {
-    grid-column: auto;
-    grid-row: auto;
-    margin-left: 0;
-    padding: 0;
-    border-left: none;
     background: transparent;
     border-radius: 0;
+    padding: 0;
   }
 }
 
@@ -841,7 +810,7 @@ main {
   margin-inline: auto;
 }
 
-/* Первая «кованая» рамка заголовка + SVG-обводка, рисуемая по периметру при .is-drawn */
+/* Плашка заголовка + SVG-обводка (.is-drawn вешает JS) */
 .section-head__plate {
   position: relative;
   display: block;
@@ -849,27 +818,25 @@ main {
   max-width: 100%;
   box-sizing: border-box;
   padding: clamp(1.05rem, 2.4vw, 1.55rem) clamp(1.2rem, 3.2vw, 2.15rem);
-  border: 1px solid rgba(138, 102, 40, 0.42);
+  border: 1px solid rgba(210, 179, 102, 0.38);
   border-radius: 1px;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 251, 244, 0.5),
-    inset 0 0 0 2px rgba(198, 186, 168, 0.4),
-    0 0 0 1px rgba(176, 162, 142, 0.28),
-    0 10px 32px var(--shadow-medium);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    inset 0 0 0 2px rgba(42, 40, 36, 0.55),
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 10px 32px rgba(0, 0, 0, 0.4);
   background:
-    linear-gradient(90deg, transparent 40%, rgba(184, 140, 60, 0.35) 50%, transparent 60%) center 0.52rem / 2.75rem 1px no-repeat,
-    linear-gradient(90deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) 6px 6px / 16px 1px no-repeat,
-    linear-gradient(180deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) 6px 6px / 1px 16px no-repeat,
-    linear-gradient(270deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) right 6px top 6px / 16px 1px no-repeat,
-    linear-gradient(180deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) right 6px top 6px / 1px 16px no-repeat,
-    linear-gradient(90deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) 6px calc(100% - 6px) / 16px 1px no-repeat,
-    linear-gradient(0deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) 6px calc(100% - 6px) / 1px 16px no-repeat,
-    linear-gradient(270deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) right 6px calc(100% - 6px) / 16px 1px no-repeat,
-    linear-gradient(0deg, rgba(154, 114, 40, 0.55), rgba(154, 114, 40, 0.55)) right 6px calc(100% - 6px) / 1px 16px no-repeat,
-    radial-gradient(ellipse 130% 85% at 50% 0%, rgba(212, 175, 88, 0.12), transparent 52%) center top / 100% 65% no-repeat,
-    var(--granite-noise-soft) 0 0 / 168px 168px repeat,
-    var(--marble-noise) 0 0 / 200px 200px repeat,
-    linear-gradient(168deg, rgba(240, 232, 220, 0.96) 0%, rgba(232, 222, 208, 0.94) 52%, rgba(238, 230, 216, 0.96) 100%) center / 100% 100% no-repeat;
+    linear-gradient(90deg, transparent 40%, rgba(184, 140, 60, 0.4) 50%, transparent 60%) center 0.52rem / 2.75rem 1px no-repeat,
+    linear-gradient(90deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) 6px 6px / 16px 1px no-repeat,
+    linear-gradient(180deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) 6px 6px / 1px 16px no-repeat,
+    linear-gradient(270deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) right 6px top 6px / 16px 1px no-repeat,
+    linear-gradient(180deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) right 6px top 6px / 1px 16px no-repeat,
+    linear-gradient(90deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) 6px calc(100% - 6px) / 16px 1px no-repeat,
+    linear-gradient(0deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) 6px calc(100% - 6px) / 1px 16px no-repeat,
+    linear-gradient(270deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) right 6px calc(100% - 6px) / 16px 1px no-repeat,
+    linear-gradient(0deg, rgba(200, 165, 88, 0.55), rgba(200, 165, 88, 0.55)) right 6px calc(100% - 6px) / 1px 16px no-repeat,
+    radial-gradient(ellipse 130% 85% at 50% 0%, rgba(212, 175, 88, 0.16), transparent 52%) center top / 100% 65% no-repeat,
+    linear-gradient(168deg, rgba(36, 35, 40, 0.96) 0%, rgba(22, 22, 26, 0.94) 52%, rgba(30, 29, 34, 0.96) 100%) center / 100% 100% no-repeat;
 }
 
 .section-head__plate::before {
@@ -877,9 +844,9 @@ main {
   position: absolute;
   z-index: 0;
   inset: 4px;
-  border: 1px solid rgba(138, 102, 40, 0.2);
+  border: 1px solid rgba(210, 179, 102, 0.15);
   pointer-events: none;
-  box-shadow: inset 0 0 14px rgba(120, 100, 80, 0.06);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.35);
 }
 
 .section-head__stroke {
@@ -894,7 +861,7 @@ main {
 }
 
 .section-head__stroke-path {
-  stroke: rgba(138, 102, 40, 0.88);
+  stroke: rgba(210, 179, 102, 0.78);
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
   transition: stroke-dashoffset 1.15s cubic-bezier(0.22, 1, 0.36, 1);
@@ -925,9 +892,9 @@ main {
   color: var(--gold-heading);
   font-feature-settings: "kern" 1, "liga" 1;
   text-shadow:
-    0 0 32px rgba(212, 165, 72, 0.45),
-    0 0 2px rgba(255, 252, 248, 0.95),
-    0 1px 2px rgba(62, 48, 32, 0.12);
+    0 0 28px rgba(212, 165, 72, 0.35),
+    0 0 2px rgba(20, 18, 14, 0.9),
+    0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .section-sub {
@@ -953,40 +920,9 @@ main {
 }
 
 .section-alt {
-  background-color: rgba(248, 242, 234, 0.5);
-  position: relative;
-  isolation: isolate;
-  background-image:
-    var(--granite-noise-soft) 0 0 / 220px 220px repeat,
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.55) 0%,
-      rgba(236, 232, 226, 0.45) 50%,
-      rgba(252, 248, 242, 0.5) 100%
-    );
-  background-size: 220px 220px, auto;
-  background-repeat: repeat, no-repeat;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.02) 100%);
   border-top: 1px solid var(--gold-line);
   border-bottom: 1px solid var(--gold-line);
-}
-
-.section-alt::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--granite-photo);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  mix-blend-mode: multiply;
-}
-
-.section-alt > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* Соседние «полосатые» секции — одна общая граница, без двойной линии */
@@ -1001,28 +937,7 @@ main {
   padding: clamp(4rem, 12vw, 7rem) 1.25rem clamp(3.5rem, 8vw, 5rem);
   text-align: center;
   border-bottom: 1px solid var(--gold-line);
-  background-color: rgba(240, 232, 222, 0.35);
-  background-image:
-    var(--granite-noise-soft) 0 0 / 240px 240px repeat,
-    var(--granite-noise-fine) 0 0 / 120px 120px repeat,
-    radial-gradient(ellipse 85% 60% at 50% 0%, rgba(255, 248, 236, 0.9) 0%, transparent 58%),
-    radial-gradient(ellipse 110% 55% at 50% 100%, rgba(232, 218, 198, 0.35) 0%, transparent 52%);
-  background-size: auto, auto, auto, auto;
-  background-repeat: repeat, repeat, no-repeat, no-repeat;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--granite-photo);
-  background-size: cover;
-  background-position: center 42%;
-  background-repeat: no-repeat;
-  opacity: 0.55;
-  mix-blend-mode: multiply;
+  background: radial-gradient(ellipse 85% 60% at 50% 0%, rgba(212, 181, 106, 0.14) 0%, transparent 58%);
 }
 
 /* Крупный знак без названия (файл-марк; при появлении отдельного PNG замените src в HTML) */
@@ -1036,8 +951,8 @@ main {
   max-width: none;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  opacity: 0.12;
-  mix-blend-mode: multiply;
+  opacity: 0.28;
+  mix-blend-mode: screen;
   filter: blur(0.45px);
 }
 
@@ -1074,9 +989,9 @@ main {
   color: var(--gold-heading);
   font-feature-settings: "kern" 1, "liga" 1;
   text-shadow:
-    0 0 42px rgba(200, 150, 48, 0.5),
-    0 0 3px rgba(255, 252, 248, 0.95),
-    0 2px 4px rgba(62, 48, 32, 0.12);
+    0 0 48px rgba(212, 165, 72, 0.42),
+    0 0 3px rgba(14, 12, 10, 0.95),
+    0 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 .hero-tagline {
@@ -1131,7 +1046,7 @@ main {
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  background: #c9a028;
+  background: #e4cc92;
   color: var(--text-on-gold);
   outline: none;
 }
@@ -1172,27 +1087,49 @@ main {
 }
 
 .card {
-  background-color: var(--bg-panel);
-  background-image: var(--granite-noise-soft), var(--granite-noise-fine), var(--marble-noise), var(--marble-panel);
-  background-size: 200px 200px, 96px 96px, 200px 200px, auto;
-  background-repeat: repeat, repeat, repeat, no-repeat;
+  background: var(--bg-panel);
   border: 1px solid var(--gold-line);
   padding: 1.5rem 1.35rem;
   border-radius: var(--radius);
-  box-shadow: inset 0 1px 0 var(--rim-light), 0 2px 12px var(--shadow-soft);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .section-services .card {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background-color: var(--bg-raised);
-  background-image: var(--granite-noise-soft), var(--granite-noise-fine), var(--marble-noise), var(--marble-panel);
-  background-size: 220px 220px, 104px 104px, 220px 220px, auto;
-  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-color: rgba(22, 22, 25, 0.3);
+  background-image: url("../content/granit.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding-top: 2.65rem;
   padding-right: 1.35rem;
-  box-shadow: inset 0 1px 0 var(--rim-light), 0 2px 12px var(--shadow-soft);
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.42);
+}
+
+.section-services .card::before,
+.section-services .card::after {
+  content: "";
+}
+
+.section-services .card::before {
+  content: none;
+}
+
+.section-services .card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(
+      to bottom right,
+      rgba(255, 252, 246, 0.2) 0%,
+      rgba(255, 250, 240, 0.08) 26%,
+      transparent 56%
+    ),
+    linear-gradient(168deg, rgba(8, 8, 10, 0.2) 0%, rgba(10, 10, 12, 0.36) 60%, rgba(6, 6, 8, 0.5) 100%);
+  pointer-events: none;
 }
 
 .section-services .card > * {
@@ -1219,7 +1156,7 @@ main {
   background: var(--gold-dim, #d2b366);
   border: 1px solid var(--gold-muted, #9f8b4a);
   border-radius: var(--radius);
-  box-shadow: 0 1px 4px var(--shadow-soft);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
   opacity: 0;
   transform: translate3d(0, -0.55rem, 0);
   pointer-events: none;
@@ -1233,7 +1170,7 @@ main {
 
 .section-services .card-order-btn:hover,
 .section-services .card-order-btn:focus-visible {
-  background: #c9a028;
+  background: #e4cc92;
   border-color: var(--gold-muted);
   outline: none;
 }
@@ -1258,14 +1195,11 @@ main {
   font-weight: 600;
   margin: 0 0 0.75rem;
   letter-spacing: 0.03em;
-  color: var(--gold-heading);
 }
 
 .section-services .card h3 {
   padding-right: 5.75rem;
-  color: var(--gold-heading);
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 18px rgba(200, 150, 48, 0.28), 0 1px 0 rgba(255, 251, 244, 0.6);
+  color: var(--gold-dim);
 }
 
 .card p {
@@ -1325,20 +1259,10 @@ main {
   border-bottom: none;
 }
 
-.advantages li strong,
-.terms-list li strong {
-  color: var(--gold-muted);
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-shadow: 0 0 18px rgba(200, 150, 48, 0.35), 0 0 1px rgba(255, 252, 248, 0.8);
-}
-
 .adv-mark {
   color: var(--gold-dim);
   flex-shrink: 0;
   margin-top: 0.15rem;
-  text-shadow: 0 0 14px rgba(200, 150, 48, 0.4);
-  font-size: 1.05em;
 }
 
 /* Галерея */
@@ -1357,11 +1281,7 @@ main {
 .gallery-item {
   margin: 0;
   aspect-ratio: 4 / 3;
-  background:
-    linear-gradient(118deg, transparent 46%, rgba(255, 251, 244, 0.42) 49%, transparent 52%),
-    var(--granite-noise-soft) 0 0 / 180px 180px repeat,
-    var(--marble-noise) 0 0 / 200px 200px repeat,
-    linear-gradient(168deg, rgba(238, 230, 218, 0.98) 0%, rgba(226, 216, 200, 0.95) 100%);
+  background: linear-gradient(145deg, var(--bg-panel) 0%, var(--stone) 100%);
   border: 1px solid var(--gold-line);
   border-radius: var(--radius);
   display: flex;
@@ -1387,9 +1307,7 @@ main {
 .gallery-item figcaption {
   position: relative;
   font-size: 0.75rem;
-  color: var(--gold-muted);
-  letter-spacing: 0.06em;
-  text-shadow: 0 0 12px rgba(200, 150, 48, 0.25), 0 1px 2px rgba(62, 48, 32, 0.1);
+  color: var(--text-muted);
 }
 
 /* Формы */
@@ -1443,12 +1361,8 @@ main {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--gold-heading);
-  text-shadow:
-    0 0 16px rgba(200, 150, 48, 0.35),
-    0 0 1px rgba(255, 252, 248, 0.9),
-    0 1px 2px rgba(62, 48, 32, 0.1);
+  letter-spacing: 0.04em;
+  color: var(--gold-dim);
 }
 
 .field-hint {
@@ -1501,15 +1415,14 @@ main {
 
 .calc-tariff-btn.is-selected {
   border-color: var(--gold-muted);
-  background: var(--gold-ui-fill);
-  box-shadow: inset 0 0 0 1px rgba(230, 204, 148, 0.38);
+  background: rgba(210, 179, 102, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(210, 179, 102, 0.35);
 }
 
 .calc-tariff-btn__title {
   display: block;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--gold-heading);
 }
 
 .calc-tariff-btn__note {
@@ -1563,20 +1476,15 @@ main {
   margin: 0;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold-heading);
-  text-shadow: 0 0 12px rgba(200, 150, 48, 0.35), 0 0 1px rgba(255, 252, 248, 0.9);
+  letter-spacing: 0.12em;
+  color: var(--gold-muted);
 }
 
 .calc-result-sum {
   margin: 0.35rem 0 0.75rem;
   font-family: var(--font-serif);
   font-size: 1.75rem;
-  color: var(--gold-heading-bright);
-  text-shadow:
-    0 0 22px rgba(200, 150, 48, 0.4),
-    0 0 1px rgba(255, 252, 248, 0.95),
-    0 1px 2px rgba(62, 48, 32, 0.1);
+  color: var(--gold-dim);
 }
 
 .calc-result-note {
@@ -1629,11 +1537,36 @@ main {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background-color: var(--bg-panel);
-  background-image: var(--granite-noise-soft), var(--granite-noise-fine), var(--marble-noise), var(--marble-panel);
-  background-size: 200px 200px, 100px 100px, 200px 200px, auto;
-  background-repeat: repeat, repeat, repeat, no-repeat;
-  box-shadow: inset 0 1px 0 var(--rim-light), 0 2px 12px var(--shadow-soft);
+  background-color: rgba(22, 22, 25, 0.3);
+  background-image: url("../content/granit.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.42);
+}
+
+.section-contacts .contact-block::before,
+.section-contacts .contact-block::after {
+  content: "";
+}
+
+.section-contacts .contact-block::before {
+  content: none;
+}
+
+.section-contacts .contact-block::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(
+      to bottom right,
+      rgba(255, 252, 246, 0.2) 0%,
+      rgba(255, 250, 240, 0.08) 26%,
+      transparent 56%
+    ),
+    linear-gradient(168deg, rgba(8, 8, 10, 0.2) 0%, rgba(10, 10, 12, 0.36) 60%, rgba(6, 6, 8, 0.5) 100%);
+  pointer-events: none;
 }
 
 .section-contacts .contact-block > * {
@@ -1645,10 +1578,8 @@ main {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   margin: 0 0 0.5rem;
-  color: var(--gold-heading);
+  color: var(--gold-dim);
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 16px rgba(200, 150, 48, 0.25), 0 1px 0 rgba(255, 251, 244, 0.55);
 }
 
 .contact-block p {
@@ -1678,32 +1609,12 @@ main {
 .site-footer {
   position: relative;
   z-index: 1;
-  isolation: isolate;
   padding: 2rem 1.25rem;
   border-top: 1px solid var(--gold-line);
-  background-color: var(--bg-raised);
-  background-image: var(--granite-noise-soft), var(--granite-noise-fine), var(--marble-noise);
-  background-size: 220px 220px, 112px 112px, 200px 200px;
-  background-repeat: repeat, repeat, repeat;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--granite-photo);
-  background-size: cover;
-  background-position: center 35%;
-  background-repeat: no-repeat;
-  opacity: 0.48;
-  mix-blend-mode: multiply;
+  background: var(--bg-raised);
 }
 
 .footer-inner {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1765,21 +1676,17 @@ main {
 
 .footer-messenger-icon:hover,
 .footer-messenger-icon:focus-visible {
-  background: rgba(217, 188, 116, 0.2);
-  color: var(--gold-heading);
+  background: rgba(210, 179, 102, 0.18);
+  color: var(--text);
   outline: none;
 }
 
 .footer-brand {
   font-family: var(--font-serif);
   font-size: 1.25rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   margin: 0;
-  color: var(--gold-heading);
-  text-shadow:
-    0 0 26px rgba(200, 150, 48, 0.38),
-    0 0 1px rgba(255, 252, 248, 0.95),
-    0 1px 2px rgba(62, 48, 32, 0.1);
+  color: var(--gold-dim);
 }
 
 .footer-copy {
@@ -1801,7 +1708,7 @@ main {
   border: 1px solid var(--gold-dim);
   border-radius: var(--radius);
   font-size: 0.9rem;
-  box-shadow: 0 8px 32px var(--shadow-deep);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   transition: transform 0.4s var(--ease);
   max-width: min(90vw, 420px);
   text-align: center;

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#e4d9cc" />
-  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <meta name="color-scheme" content="dark" />
   <meta name="description" content="Мемория — студия гранита. Благоустройство могил под ключ по всей Беларуси: памятники, ограды, мемориальные комплексы, реконструкция и уход. Гарантия, рассрочка до 6 месяцев без переплат, договор и чек." />
   <title>Мемория — студия гранита</title>
   <link rel="icon" type="image/png" href="content/favicon gold.png" />
@@ -17,13 +17,17 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=78" />
+  <link rel="stylesheet" href="css/styles.css?v=98" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
 
   <div class="grain" aria-hidden="true"></div>
-  <div class="sun-from-logo" aria-hidden="true"><span class="sun-from-logo__dust"></span></div>
+  <div class="sun-from-logo" aria-hidden="true">
+    <div class="sun-from-logo__rays">
+      <span class="sun-from-logo__dust"></span>
+    </div>
+  </div>
 
   <header class="site-header">
     <div class="brand-cluster">
@@ -205,69 +209,51 @@
                 <p class="section-sub">Ориентировочная площадь и сумма по введённым размерам — не договор, итог после осмотра.</p>
               </div>
             </header>
-            <div class="calc-panel__layout">
-              <div class="calc-panel__dims">
-                <fieldset class="calc-fieldset">
-                  <legend class="calc-fieldset-legend">Размер захоронения</legend>
-                  <div class="calc-dims">
-                    <label class="field">
-                      <span>Длина, <abbr class="calc-unit" title="метры">м</abbr></span>
-                      <input type="number" name="burial_length" min="0" step="0.1" inputmode="decimal" placeholder="например, 3" required />
-                    </label>
-                    <label class="field">
-                      <span>Ширина, <abbr class="calc-unit" title="метры">м</abbr></span>
-                      <input type="number" name="burial_width" min="0" step="0.1" inputmode="decimal" placeholder="например, 2" required />
-                    </label>
-                  </div>
-                </fieldset>
+            <div class="calc-panel__dims">
+              <fieldset class="calc-fieldset">
+                <legend class="calc-fieldset-legend">Размер захоронения</legend>
+                <div class="calc-dims">
+                  <label class="field">
+                    <span>Длина, <abbr class="calc-unit" title="метры">м</abbr></span>
+                    <input type="number" name="burial_length" min="0" step="0.1" inputmode="decimal" placeholder="например, 3" required />
+                  </label>
+                  <label class="field">
+                    <span>Ширина, <abbr class="calc-unit" title="метры">м</abbr></span>
+                    <input type="number" name="burial_width" min="0" step="0.1" inputmode="decimal" placeholder="например, 2" required />
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div
+              class="calc-fieldset calc-fieldset--tariff calc-panel__tariff"
+              role="group"
+              aria-labelledby="calc-tariff-legend"
+            >
+              <div class="calc-fieldset-legend" id="calc-tariff-legend">Тариф</div>
+              <input type="hidden" name="tariff" id="calc-tariff-value" value="standard" />
+              <div class="calc-tariff-btns" role="radiogroup" aria-labelledby="calc-tariff-legend">
+                <button type="button" class="calc-tariff-btn" data-calc-tariff="econom" role="radio" aria-checked="false">
+                  <span class="calc-tariff-btn__title">Эконом</span>
+                  <span class="calc-tariff-btn__note">Тротуарная плитка и бордюр</span>
+                </button>
+                <button type="button" class="calc-tariff-btn is-selected" data-calc-tariff="standard" role="radio" aria-checked="true">
+                  <span class="calc-tariff-btn__title">Стандартный</span>
+                  <span class="calc-tariff-btn__note">Бетонирование и керамогранит</span>
+                </button>
+                <button type="button" class="calc-tariff-btn" data-calc-tariff="premium" role="radio" aria-checked="false">
+                  <span class="calc-tariff-btn__title">Премиум</span>
+                  <span class="calc-tariff-btn__note">Бетонирование и гранит</span>
+                </button>
               </div>
-              <aside class="calc-panel__aside" aria-label="Тариф и результат расчёта">
-                <div class="calc-fieldset calc-fieldset--tariff calc-panel__tariff" role="group" aria-labelledby="calc-tariff-legend">
-                  <div class="calc-fieldset-legend" id="calc-tariff-legend">Тариф</div>
-                  <input type="hidden" name="tariff" id="calc-tariff-value" value="standard" />
-                  <div class="calc-tariff-btns" role="radiogroup" aria-labelledby="calc-tariff-legend">
-                    <button
-                      type="button"
-                      class="calc-tariff-btn"
-                      data-calc-tariff="econom"
-                      role="radio"
-                      aria-checked="false"
-                    >
-                      <span class="calc-tariff-btn__title">Эконом</span>
-                      <span class="calc-tariff-btn__note">Тротуарная плитка и бордюр</span>
-                    </button>
-                    <button
-                      type="button"
-                      class="calc-tariff-btn is-selected"
-                      data-calc-tariff="standard"
-                      role="radio"
-                      aria-checked="true"
-                    >
-                      <span class="calc-tariff-btn__title">Стандартный</span>
-                      <span class="calc-tariff-btn__note">Бетонирование и керамогранит</span>
-                    </button>
-                    <button
-                      type="button"
-                      class="calc-tariff-btn"
-                      data-calc-tariff="premium"
-                      role="radio"
-                      aria-checked="false"
-                    >
-                      <span class="calc-tariff-btn__title">Премиум</span>
-                      <span class="calc-tariff-btn__note">Бетонирование и гранит</span>
-                    </button>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block calc-panel__submit">Рассчитать ориентировочно</button>
-                <div class="calc-panel__outcome">
-                  <p class="calc-result-idle" id="calc-result-idle">Нажмите «Рассчитать», чтобы увидеть ориентировочную сумму.</p>
-                  <div class="calc-result calc-result--panel" id="calc-result" role="status" aria-live="polite" hidden>
-                    <p class="calc-result-label">Ориентировочно:</p>
-                    <p class="calc-result-sum" id="calc-sum"></p>
-                    <p class="calc-result-note calc-result-comment" id="calc-result-comment">Итоговая стоимость после осмотра и согласования материалов.</p>
-                  </div>
-                </div>
-              </aside>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block calc-panel__submit">Рассчитать ориентировочно</button>
+            <div class="calc-panel__outcome" role="region" aria-label="Результат расчёта">
+              <p class="calc-result-idle" id="calc-result-idle">Нажмите «Рассчитать», чтобы увидеть ориентировочную сумму.</p>
+              <div class="calc-result calc-result--panel" id="calc-result" role="status" aria-live="polite" hidden>
+                <p class="calc-result-label">Ориентировочно:</p>
+                <p class="calc-result-sum" id="calc-sum"></p>
+                <p class="calc-result-note calc-result-comment" id="calc-result-comment">Итоговая стоимость после осмотра и согласования материалов.</p>
+              </div>
             </div>
           </form>
         </div>
@@ -451,6 +437,6 @@
 
   <div class="toast" id="toast" role="alert" hidden></div>
 
-  <script src="js/app.js?v=42"></script>
+  <script src="js/app.js?v=43"></script>
 </body>
 </html>
