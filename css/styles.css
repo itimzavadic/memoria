@@ -1,29 +1,30 @@
-/* Мемория — угольная тёмная тема, золото; лучи (sun-from-logo) + глубина (logo-ambient) */
+/* Мемория — тёмная тема: нейтрали и золото крутятся в :root; без «молочных» масок поверх контента */
 
 :root {
   color-scheme: dark;
-  --bg-deep: #121216;
-  --bg-raised: #1d1d22;
-  --bg-panel: #25252b;
-  --stone: #2d2d35;
-  --stone-edge: #3b3b45;
-  --text: #eceae6;
-  --text-muted: #aba79d;
+  /* Основные нейтрали (ещё чуть светлее графита) */
+  --bg-deep: #22222a;
+  --bg-raised: #2c2c36;
+  --bg-panel: #363640;
+  --stone: #3e3e4a;
+  --stone-edge: #4e4e5c;
+  --text: #f5f3ef;
+  --text-muted: #c8c3ba;
   /* Текст на золотых кнопках */
-  --text-on-gold: #121210;
-  --gold-dim: #d4b56a;
-  --gold-muted: #a89255;
-  --gold-line: rgba(210, 179, 102, 0.28);
-  --gold-glow: rgba(210, 179, 102, 0.1);
-  /* Затемнение поверх фото + векторное зерно (как в прошлой версии с «мраморной» темой) — шум не размывается при cover/Retina */
-  --granit-veil-1: rgba(12, 11, 10, 0.88);
-  --granit-veil-2: rgba(16, 14, 12, 0.8);
-  --granit-veil-3: rgba(22, 20, 18, 0.9);
+  --text-on-gold: #141418;
+  --gold-dim: #dfbf7a;
+  --gold-muted: #b8a064;
+  --gold-line: rgba(223, 191, 122, 0.38);
+  --gold-glow: rgba(223, 191, 122, 0.14);
+  /* Вуали на фото гранита — те же оттенки, что и фон страницы, без отдельного «слоя пыли» */
+  --granit-veil-1: rgba(34, 34, 42, 0.74);
+  --granit-veil-2: rgba(38, 38, 48, 0.66);
+  --granit-veil-3: rgba(44, 44, 54, 0.76);
   --granit-grain-coarse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256' viewBox='0 0 256 256'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.046' numOctaves='5' stitchTiles='stitch' seed='17'/%3E%3CfeColorMatrix type='matrix' values='0.32 0.28 0.24 0 0.06 0.28 0.26 0.22 0 0.05 0.24 0.22 0.2 0 0.04 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.14'/%3E%3C/svg%3E");
   --granit-grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.095' numOctaves='4' stitchTiles='stitch' seed='53'/%3E%3CfeColorMatrix type='matrix' values='0.3 0.24 0.18 0 0.08 0.26 0.22 0.16 0 0.07 0.22 0.18 0.14 0 0.06 0 0 0 0.48 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.26'/%3E%3C/svg%3E");
-  --gold-ui-fill: rgba(210, 179, 102, 0.14);
-  --gold-heading: #e6cf8a;
-  --gold-heading-bright: #f2e0a8;
+  --gold-ui-fill: rgba(223, 191, 122, 0.18);
+  --gold-heading: #edd498;
+  --gold-heading-bright: #f5e4b0;
   --header-h: 4.25rem;
   --dock-h: 3.65rem;
   --font-sans: "Manrope", system-ui, sans-serif;
@@ -73,11 +74,11 @@ body {
   position: fixed;
   inset: 0;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.42;
+  /* Только лёгкие золотистые блики — без белой «пелены» */
   background-image:
-    radial-gradient(ellipse 120% 80% at 15% 0%, rgba(212, 181, 106, 0.07) 0%, transparent 52%),
-    radial-gradient(ellipse 90% 55% at 100% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 48%),
-    radial-gradient(circle at 50% 100%, rgba(212, 181, 106, 0.05) 0%, transparent 42%);
+    radial-gradient(ellipse 120% 80% at 15% 0%, rgba(223, 191, 122, 0.065) 0%, transparent 52%),
+    radial-gradient(circle at 50% 100%, rgba(223, 191, 122, 0.04) 0%, transparent 42%);
 }
 
 .grain::after {
@@ -397,7 +398,7 @@ body {
   min-height: var(--header-h);
   padding: 0.5rem 1.25rem;
   padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
-  background: linear-gradient(180deg, rgba(24, 24, 26, 0.98) 0%, rgba(12, 12, 14, 0.98) 100%);
+  background: linear-gradient(180deg, rgba(46, 46, 56, 0.98) 0%, rgba(30, 30, 38, 0.98) 100%);
   border-bottom: 1px solid var(--gold-line);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -411,6 +412,14 @@ body {
   margin-left: auto;
   flex-shrink: 0;
   font-size: 0.8rem;
+}
+
+.header-phones {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  line-height: 1.35;
 }
 
 .header-phone {
@@ -436,7 +445,7 @@ body {
 }
 
 @media (max-width: 720px) {
-  .site-header .header-phone {
+  .site-header .header-phones {
     display: none;
   }
 
@@ -485,9 +494,9 @@ body {
   z-index: 55;
   height: calc(var(--dock-h) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  background: linear-gradient(0deg, rgba(22, 22, 24, 0.98) 0%, rgba(10, 10, 12, 0.97) 100%);
+  background: linear-gradient(0deg, rgba(42, 42, 50, 0.98) 0%, rgba(28, 28, 36, 0.97) 100%);
   border-top: 1px solid var(--gold-line);
-  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.38);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
@@ -920,7 +929,12 @@ main {
 }
 
 .section-alt {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: var(--bg-raised);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-raised) 78%, var(--stone)) 0%,
+    var(--bg-deep) 100%
+  );
   border-top: 1px solid var(--gold-line);
   border-bottom: 1px solid var(--gold-line);
 }
@@ -937,7 +951,7 @@ main {
   padding: clamp(4rem, 12vw, 7rem) 1.25rem clamp(3.5rem, 8vw, 5rem);
   text-align: center;
   border-bottom: 1px solid var(--gold-line);
-  background: radial-gradient(ellipse 85% 60% at 50% 0%, rgba(212, 181, 106, 0.14) 0%, transparent 58%);
+  background: radial-gradient(ellipse 85% 60% at 50% 0%, rgba(223, 191, 122, 0.12) 0%, transparent 58%);
 }
 
 /* Крупный знак без названия (файл-марк; при появлении отдельного PNG замените src в HTML) */
@@ -976,7 +990,7 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.28em;
   color: var(--gold-dim);
-  margin: 0 0 1rem;
+  margin: 0 0 1.35rem;
 }
 
 .hero h1 {
@@ -984,7 +998,7 @@ main {
   font-weight: 400;
   font-size: clamp(3.25rem, 10vw, 4.75rem);
   line-height: 1.05;
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.4rem;
   letter-spacing: 0.12em;
   color: var(--gold-heading);
   font-feature-settings: "kern" 1, "liga" 1;
@@ -995,7 +1009,7 @@ main {
 }
 
 .hero-tagline {
-  margin: -0.35rem 0 1.25rem;
+  margin: 0 0 1.35rem;
   font-size: clamp(0.95rem, 2.4vw, 1.08rem);
   line-height: 1.55;
   color: var(--text);
@@ -1003,7 +1017,7 @@ main {
 }
 
 .hero .lead {
-  margin: 0 0 2rem;
+  margin: 0 0 1.35rem;
   color: var(--text-muted);
   font-size: 1.05rem;
 }
@@ -1098,7 +1112,8 @@ main {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background-color: rgba(22, 22, 25, 0.3);
+  /* Сильнее приглушаем фото под текстом — буквы читаются без «мыльной» пелены */
+  background-color: rgba(10, 10, 14, 0.48);
   background-image: url("../content/granit.jpg");
   background-size: cover;
   background-position: center;
@@ -1121,14 +1136,20 @@ main {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Слой 1: блик «полировки» из палитры золота; слой 2: тональная глубина без белой пелены */
   background:
     linear-gradient(
-      to bottom right,
-      rgba(255, 252, 246, 0.2) 0%,
-      rgba(255, 250, 240, 0.08) 26%,
-      transparent 56%
+      128deg,
+      color-mix(in srgb, var(--gold-heading-bright) 28%, transparent) 0%,
+      color-mix(in srgb, var(--gold-heading) 12%, transparent) 18%,
+      transparent 46%
     ),
-    linear-gradient(168deg, rgba(8, 8, 10, 0.2) 0%, rgba(10, 10, 12, 0.36) 60%, rgba(6, 6, 8, 0.5) 100%);
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--bg-panel) 34%, transparent) 0%,
+      color-mix(in srgb, var(--stone) 20%, transparent) 42%,
+      transparent 68%
+    );
   pointer-events: none;
 }
 
@@ -1198,8 +1219,36 @@ main {
 }
 
 .section-services .card h3 {
-  padding-right: 5.75rem;
-  color: var(--gold-dim);
+  padding-right: 6rem;
+  font-family: var(--font-serif);
+  color: var(--gold-heading);
+  /* Как заголовки плиток в контактах, чуть выше по максимуму из‑за длины строк */
+  font-size: clamp(1.28rem, 3vw, 1.48rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.85),
+    0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+.section-services .card .card-lead {
+  color: var(--text);
+  color: color-mix(in srgb, var(--text) 94%, var(--gold-heading) 6%);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+.section-services .card .card-bullets {
+  color: var(--text);
+  color: color-mix(in srgb, var(--text) 90%, transparent);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.62;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.72);
 }
 
 .card p {
@@ -1232,6 +1281,18 @@ main {
 
 .terms-list {
   margin-bottom: 0;
+}
+
+/* Условия: пункты одного стиля, без пары «термин — пояснение» */
+.terms-list--plain li {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  padding: 0.75rem 0;
+}
+
+.terms-list--plain li strong {
+  font-weight: 600;
 }
 
 .terms-prose {
@@ -1358,8 +1419,8 @@ main {
   height: 2.35rem;
   border-radius: 50%;
   border: 2px solid var(--gold-line);
-  background-color: rgba(18, 18, 20, 0.88);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath stroke='%23d4b56a' stroke-width='1.85' stroke-linecap='round' stroke-linejoin='round' d='M7.5 6 4.5 10l3 4M12.5 6l3 4-3 4'/%3E%3C/svg%3E");
+  background-color: rgba(28, 28, 34, 0.9);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath stroke='%23dfbf7a' stroke-width='1.85' stroke-linecap='round' stroke-linejoin='round' d='M7.5 6 4.5 10l3 4M12.5 6l3 4-3 4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 55% 55%;
@@ -1376,7 +1437,7 @@ main {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text);
-  background: rgba(10, 10, 12, 0.72);
+  background: rgba(22, 22, 28, 0.78);
   border: 1px solid var(--gold-line);
   border-radius: var(--radius);
   pointer-events: none;
@@ -1430,12 +1491,7 @@ main {
   cursor: ew-resize;
 }
 
-.compare figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-align: center;
-}
+/* Подписи под сравнением убраны — отступ не нужен */
 
 /* Формы */
 .field {
@@ -1620,12 +1676,6 @@ main {
   color: var(--text-muted);
 }
 
-.calc-result-comment {
-  margin-top: 0.65rem;
-  font-style: italic;
-  line-height: 1.48;
-}
-
 .form-footnote {
   margin: 0.75rem 0 0;
   font-size: 0.8rem;
@@ -1687,12 +1737,17 @@ main {
   z-index: 0;
   background:
     linear-gradient(
-      to bottom right,
-      rgba(255, 252, 246, 0.2) 0%,
-      rgba(255, 250, 240, 0.08) 26%,
-      transparent 56%
+      128deg,
+      color-mix(in srgb, var(--gold-heading-bright) 28%, transparent) 0%,
+      color-mix(in srgb, var(--gold-heading) 12%, transparent) 18%,
+      transparent 46%
     ),
-    linear-gradient(168deg, rgba(8, 8, 10, 0.2) 0%, rgba(10, 10, 12, 0.36) 60%, rgba(6, 6, 8, 0.5) 100%);
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--bg-panel) 34%, transparent) 0%,
+      color-mix(in srgb, var(--stone) 20%, transparent) 42%,
+      transparent 68%
+    );
   pointer-events: none;
 }
 
@@ -1703,10 +1758,13 @@ main {
 
 .contact-block h3 {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  margin: 0 0 0.5rem;
-  color: var(--gold-dim);
+  font-size: clamp(1.2rem, 2.8vw, 1.38rem);
+  margin: 0 0 0.55rem;
+  color: var(--gold-heading);
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 .contact-block p {

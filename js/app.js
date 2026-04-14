@@ -60,7 +60,6 @@
   var calcForm = document.getElementById("calc-form");
   var calcResult = document.getElementById("calc-result");
   var calcSum = document.getElementById("calc-sum");
-  var calcResultComment = document.getElementById("calc-result-comment");
   var calcResultIdle = document.getElementById("calc-result-idle");
   var toast = document.getElementById("toast");
   /** Вызывается после смены высоты страницы (калькулятор и т.п.) — пересчёт якорей дока */
@@ -228,7 +227,6 @@
         setCalcTariffUi(tariffValueInput && tariffValueInput.value ? tariffValueInput.value : "standard");
         if (calcResultIdle) calcResultIdle.hidden = false;
         if (calcResult) calcResult.hidden = true;
-        if (calcResultComment) calcResultComment.hidden = false;
       });
     });
 
@@ -282,13 +280,10 @@
 
       if (finish === "granite") {
         setCalcSumGraniteCopy();
-        if (calcResultComment) calcResultComment.hidden = true;
         showCalcResultBlock();
         if (onDocLayoutChange) window.requestAnimationFrame(onDocLayoutChange);
         return;
       }
-
-      if (calcResultComment) calcResultComment.hidden = false;
 
       var partTile = areaM2 * rates.tilePerM2;
       var partBorder = borderLm * rates.borderPerM;
