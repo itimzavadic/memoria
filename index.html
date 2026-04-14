@@ -17,7 +17,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=98" />
+  <link rel="stylesheet" href="css/styles.css?v=102" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
@@ -280,16 +280,132 @@
               />
             </svg>
             <h2>Галерея</h2>
-            <p class="section-sub">Каталог примеров работ готовится — здесь появятся фотографии объектов.</p>
+            <p class="section-sub">
+              Пары снимков по номеру объекта: тяните вертикальную полосу или пользуйтесь ползунком, чтобы сравнить состояние до и после работ.
+            </p>
           </div>
         </header>
         <div class="gallery-grid">
-          <figure class="gallery-item"><figcaption>Пример 1 — фото скоро</figcaption></figure>
-          <figure class="gallery-item"><figcaption>Пример 2 — фото скоро</figcaption></figure>
-          <figure class="gallery-item"><figcaption>Пример 3 — фото скоро</figcaption></figure>
-          <figure class="gallery-item"><figcaption>Пример 4 — фото скоро</figcaption></figure>
-          <figure class="gallery-item"><figcaption>Пример 5 — фото скоро</figcaption></figure>
-          <figure class="gallery-item"><figcaption>Пример 6 — фото скоро</figcaption></figure>
+          <figure class="compare">
+            <div class="compare__view" style="--compare-pct: 50%">
+              <img
+                class="compare__img compare__img--after"
+                src="content/1.jpg"
+                alt="Объект 1 — после работ"
+                width="800"
+                height="600"
+                loading="eager"
+                decoding="async"
+              />
+              <img
+                class="compare__img compare__img--before"
+                src="content/1.1.jpg"
+                alt="Объект 1 — до работ"
+                width="800"
+                height="600"
+                loading="eager"
+                decoding="async"
+              />
+              <div class="compare__divider" aria-hidden="true"></div>
+              <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
+              <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
+              <label class="compare__range-wrap">
+                <span class="visually-hidden">Сравнение до и после, объект 1 — положение разделителя</span>
+                <input class="compare__range" type="range" min="0" max="100" value="50" />
+              </label>
+            </div>
+            <figcaption>Объект 1 — до и после</figcaption>
+          </figure>
+          <figure class="compare">
+            <div class="compare__view" style="--compare-pct: 50%">
+              <img
+                class="compare__img compare__img--after"
+                src="content/2.jpg"
+                alt="Объект 2 — после работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                class="compare__img compare__img--before"
+                src="content/2.2.jpg"
+                alt="Объект 2 — до работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="compare__divider" aria-hidden="true"></div>
+              <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
+              <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
+              <label class="compare__range-wrap">
+                <span class="visually-hidden">Сравнение до и после, объект 2 — положение разделителя</span>
+                <input class="compare__range" type="range" min="0" max="100" value="50" />
+              </label>
+            </div>
+            <figcaption>Объект 2 — до и после</figcaption>
+          </figure>
+          <figure class="compare">
+            <div class="compare__view" style="--compare-pct: 50%">
+              <img
+                class="compare__img compare__img--after"
+                src="content/3.jpg"
+                alt="Объект 3 — после работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                class="compare__img compare__img--before"
+                src="content/3.3.jpg"
+                alt="Объект 3 — до работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="compare__divider" aria-hidden="true"></div>
+              <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
+              <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
+              <label class="compare__range-wrap">
+                <span class="visually-hidden">Сравнение до и после, объект 3 — положение разделителя</span>
+                <input class="compare__range" type="range" min="0" max="100" value="50" />
+              </label>
+            </div>
+            <figcaption>Объект 3 — до и после</figcaption>
+          </figure>
+          <figure class="compare">
+            <div class="compare__view" style="--compare-pct: 50%">
+              <img
+                class="compare__img compare__img--after"
+                src="content/4.jpg"
+                alt="Объект 4 — после работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                class="compare__img compare__img--before"
+                src="content/4.4.jpg"
+                alt="Объект 4 — до работ"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="compare__divider" aria-hidden="true"></div>
+              <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
+              <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
+              <label class="compare__range-wrap">
+                <span class="visually-hidden">Сравнение до и после, объект 4 — положение разделителя</span>
+                <input class="compare__range" type="range" min="0" max="100" value="50" />
+              </label>
+            </div>
+            <figcaption>Объект 4 — до и после</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -437,6 +553,6 @@
 
   <div class="toast" id="toast" role="alert" hidden></div>
 
-  <script src="js/app.js?v=43"></script>
+  <script src="js/app.js?v=45"></script>
 </body>
 </html>

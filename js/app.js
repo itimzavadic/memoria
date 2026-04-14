@@ -359,6 +359,83 @@
     }
   }
 
+  /* Галерея: «до / после» — клавиатура с range; мышь/тач — перетаскивание по кадру (Pointer Events) */
+  var compareBlocks = document.querySelectorAll(".compare__view");
+  for (var ci = 0; ci < compareBlocks.length; ci++) {
+    (function (view) {
+      var range = view.querySelector(".compare__range");
+      if (!range) return;
+
+      function applyPct(pct) {
+        if (Number.isNaN(pct)) pct = 50;
+        if (pct < 0) pct = 0;
+        if (pct > 100) pct = 100;
+        view.style.setProperty("--compare-pct", pct + "%");
+        range.value = String(Math.round(pct));
+      }
+
+      function pctFromClientX(clientX) {
+        var r = view.getBoundingClientRect();
+        if (r.width <= 0) return 50;
+        return ((clientX - r.left) / r.width) * 100;
+      }
+
+      function syncFromRange() {
+        applyPct(Number(range.value));
+      }
+
+      range.addEventListener("input", syncFromRange);
+      range.addEventListener("change", syncFromRange);
+
+      var dragPointerId = null;
+
+      function onPointerDown(e) {
+        if (typeof e.button === "number" && e.button > 0) return;
+        dragPointerId = e.pointerId;
+        try {
+          view.setPointerCapture(e.pointerId);
+        } catch (errCap) {
+          /* ignore */
+        }
+        applyPct(pctFromClientX(e.clientX));
+      }
+
+      function onPointerMove(e) {
+        if (dragPointerId === null || e.pointerId !== dragPointerId) return;
+        if (e.pointerType === "touch") {
+          try {
+            e.preventDefault();
+          } catch (pe) {
+            /* passive listener elsewhere — touch-action:none на view обычно достаточно */
+          }
+        }
+        applyPct(pctFromClientX(e.clientX));
+      }
+
+      function onPointerUp(e) {
+        if (dragPointerId === null || e.pointerId !== dragPointerId) return;
+        dragPointerId = null;
+        try {
+          view.releasePointerCapture(e.pointerId);
+        } catch (errRel) {
+          /* ignore */
+        }
+      }
+
+      function onLostPointerCapture(e) {
+        if (e.pointerId === dragPointerId) dragPointerId = null;
+      }
+
+      view.addEventListener("pointerdown", onPointerDown, true);
+      view.addEventListener("pointermove", onPointerMove, { passive: false });
+      view.addEventListener("pointerup", onPointerUp);
+      view.addEventListener("pointercancel", onPointerUp);
+      view.addEventListener("lostpointercapture", onLostPointerCapture);
+
+      syncFromRange();
+    })(compareBlocks[ci]);
+  }
+
   /** Рамка заголовка секции: обводка «по кругу» при первом попадании в зону видимости */
   var headPlates = document.querySelectorAll(".section-head__plate");
   if (headPlates.length) {
