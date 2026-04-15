@@ -17,7 +17,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=109" />
+  <link rel="stylesheet" href="css/styles.css?v=123" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
@@ -98,7 +98,9 @@
         </header>
         <p class="services-intro">
           Изготовление, доставка и монтаж из гранита и сопутствующих материалов: от эскиза и согласования до сдачи объекта.
-          Один подрядчик на весь цикл — без привлечения сторонних бригад.
+        </p>
+        <p class="services-catalog-cta">
+          <a class="btn btn-ghost" href="catalog.pdf" target="_blank" rel="noopener noreferrer">Каталог изделий (PDF)</a>
         </p>
         <div class="cards">
           <article class="card">
@@ -288,8 +290,7 @@
             </svg>
             <h2>Галерея</h2>
             <p class="section-sub">
-              Восстанавливаем объекты вашей памяти: та же площадка и условия — сдвиньте вертикальную полосу или
-              воспользуйтесь ползунком, чтобы сравнить результат до и после наших работ.
+              Восстанавливаем объекты вашей памяти, работаем в любых условиях, все этапы на высшем уровне.
             </p>
           </div>
         </header>
@@ -411,6 +412,64 @@
             </div>
           </figure>
         </div>
+
+        <div class="ig-gallery" id="work-photo-gallery" tabindex="0" aria-label="Галерея фотографий работ">
+          <div class="ig-gallery__viewport">
+            <figure class="ig-gallery__stage">
+              <button type="button" class="ig-gallery__zoom-hit" aria-label="Открыть фото во весь экран">
+                <img
+                  id="ig-gallery-main"
+                  class="ig-gallery__main"
+                  src="gallery/IMG_0763.JPG"
+                  alt="Работы студии «Мемория», фото 1 из 10"
+                  width="1200"
+                  height="800"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+              </button>
+              <figcaption class="ig-gallery__counter" aria-live="polite">1 / 10</figcaption>
+            </figure>
+            <button type="button" class="ig-gallery__nav ig-gallery__nav--prev ig-gallery__nav--dock" aria-controls="ig-gallery-main" aria-label="Предыдущее фото">
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="ig-gallery__nav ig-gallery__nav--next ig-gallery__nav--dock" aria-controls="ig-gallery-main" aria-label="Следующее фото">
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="ig-gallery__thumbs" role="group" aria-label="Миниатюры галереи">
+            <button type="button" class="ig-gallery__thumb is-selected" aria-label="Фото 1 из 10" aria-current="true" data-ig-src="gallery/IMG_0763.JPG" data-ig-alt="Работы студии «Мемория», фото 1 из 10">
+              <img src="gallery/IMG_0763.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 2 из 10" data-ig-src="gallery/IMG_0764.JPG" data-ig-alt="Работы студии «Мемория», фото 2 из 10">
+              <img src="gallery/IMG_0764.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 3 из 10" data-ig-src="gallery/IMG_0766.JPG" data-ig-alt="Работы студии «Мемория», фото 3 из 10">
+              <img src="gallery/IMG_0766.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 4 из 10" data-ig-src="gallery/IMG_0767.JPG" data-ig-alt="Работы студии «Мемория», фото 4 из 10">
+              <img src="gallery/IMG_0767.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 5 из 10" data-ig-src="gallery/IMG_0768.JPG" data-ig-alt="Работы студии «Мемория», фото 5 из 10">
+              <img src="gallery/IMG_0768.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 6 из 10" data-ig-src="gallery/IMG_7021.PNG" data-ig-alt="Работы студии «Мемория», фото 6 из 10">
+              <img src="gallery/IMG_7021.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 7 из 10" data-ig-src="gallery/IMG_7022.PNG" data-ig-alt="Работы студии «Мемория», фото 7 из 10">
+              <img src="gallery/IMG_7022.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 8 из 10" data-ig-src="gallery/IMG_7023.PNG" data-ig-alt="Работы студии «Мемория», фото 8 из 10">
+              <img src="gallery/IMG_7023.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 9 из 10" data-ig-src="gallery/IMG_7024.PNG" data-ig-alt="Работы студии «Мемория», фото 9 из 10">
+              <img src="gallery/IMG_7024.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 10 из 10" data-ig-src="gallery/IMG_7025.PNG" data-ig-alt="Работы студии «Мемория», фото 10 из 10">
+              <img src="gallery/IMG_7025.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -442,9 +501,11 @@
           <li><span class="adv-mark" aria-hidden="true">◇</span> Договор и чек, прозрачное оформление сделки.</li>
           <li><span class="adv-mark" aria-hidden="true">◇</span> Рассрочка без переплат до 6&nbsp;месяцев.</li>
           <li><span class="adv-mark" aria-hidden="true">◇</span> 10&nbsp;лет на рынке, опыт и отлаженные процессы.</li>
-          <li><span class="adv-mark" aria-hidden="true">◇</span> Каталог примеров работ в разработке, скоро на сайте.</li>
           <li><span class="adv-mark" aria-hidden="true">◇</span> Работаем по всей Беларуси, выезд и согласование объёма на месте.</li>
         </ul>
+        <p class="terms-catalog-note">
+          Каталог изделий с памятниками и примерами оформления — <a href="catalog.pdf" target="_blank" rel="noopener noreferrer">открыть документ (PDF)</a>.
+        </p>
         <div class="prose terms-prose">
           <p>
             Выезд специалиста, замер и согласование эскиза — по договорённости. Итоговая смета фиксируется после осмотра
@@ -494,11 +555,17 @@
           </div>
           <div class="contact-block">
             <h3>Адрес</h3>
-            <p>Уточняется, позже будет указан на сайте.</p>
+            <p>г.&nbsp;Светлогорск, м-н&nbsp;Первомайский, д.&nbsp;3</p>
           </div>
           <div class="contact-block">
             <h3>Режим работы</h3>
             <p>Понедельник&nbsp;— суббота с 10:00 до 19:00.<br />Воскресенье&nbsp;— выходной.</p>
+          </div>
+          <div class="contact-block contact-block--catalog">
+            <h3>Каталог изделий</h3>
+            <p>
+              <a href="catalog.pdf" target="_blank" rel="noopener noreferrer">Скачать / открыть каталог (PDF)</a>
+            </p>
           </div>
         </div>
       </div>
@@ -523,43 +590,117 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-brand">Мемория</p>
+      <div class="footer-brand-block">
+        <p class="footer-brand">Мемория</p>
+        <p class="footer-brand-tag">Студия гранита</p>
+      </div>
       <div class="footer-cta-row">
         <a class="btn btn-primary footer-cta-call" href="tel:+375293373535">Позвонить</a>
         <a class="footer-cta-phone" href="tel:+375293373535">+375 (29) 337-35-35</a>
         <a class="footer-cta-phone" href="tel:+375447072075">+375 (44) 707-20-75</a>
       </div>
-      <div class="footer-messengers" aria-label="Мессенджеры">
-        <a
-          class="footer-messenger-icon"
-          href="https://t.me/memoriya_stub"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Telegram"
-        ><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
-        <a
-          class="footer-messenger-icon"
-          href="https://wa.me/375293373535"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-        ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-        <a
-          class="footer-messenger-icon"
-          href="viber://chat?number=%2B375293373535"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Viber"
-        ><i class="fa-brands fa-viber" aria-hidden="true"></i></a>
+      <div class="footer-social-cluster" aria-label="Мессенджеры и социальные сети">
+        <div class="footer-social-icons">
+          <a
+            class="footer-messenger-icon"
+            href="https://t.me/memoriya_stub"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          ><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+          <a
+            class="footer-messenger-icon"
+            href="https://wa.me/375293373535"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+          <a
+            class="footer-messenger-icon"
+            href="viber://chat?number=%2B375293373535"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Viber"
+          ><i class="fa-brands fa-viber" aria-hidden="true"></i></a>
+          <a
+            class="footer-messenger-icon"
+            href="https://ok.ru/profile/572442294744"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Студия в Одноклассниках"
+          ><i class="fa-brands fa-odnoklassniki" aria-hidden="true"></i></a>
+          <a
+            class="footer-messenger-icon"
+            href="https://vk.ru/pamyatniki_sv"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Студия ВКонтакте"
+          ><i class="fa-brands fa-vk" aria-hidden="true"></i></a>
+          <a
+            class="footer-messenger-icon"
+            href="https://www.instagram.com/memoria.bel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram студии"
+          ><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        </div>
       </div>
-      <p class="footer-copy">
-        © <span id="year"></span> Студия гранита «Мемория». УНП&nbsp;191852434. Реквизиты для договора&nbsp;— по запросу.
+      <p class="footer-catalog">
+        <a href="catalog.pdf" target="_blank" rel="noopener noreferrer">Каталог изделий (PDF)</a>
       </p>
+      <div class="footer-legal">
+        <h2 class="visually-hidden">Юридическая информация</h2>
+        <p>ИП Климович Иван Анатольевич</p>
+        <p>УНП&nbsp;191852434</p>
+        <p>Дата государственной регистрации: 15.03.2022</p>
+        <p><strong>Адрес торговой точки:</strong> г.&nbsp;Светлогорск, м-н&nbsp;Первомайский, д.&nbsp;3</p>
+        <p><strong>Режим работы:</strong> пн&nbsp;— сб с 10:00 до 19:00, вс&nbsp;— выходной</p>
+        <p><strong>Оплата:</strong> наличные, безналичный расчёт, ЕРИП</p>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> Студия гранита «Мемория».</p>
     </div>
   </footer>
 
+  <div class="share-fab" id="share-fab" aria-label="Быстрые ссылки">
+    <div id="share-fab-panel" class="share-fab__panel" role="group" aria-label="Соцсети и мессенджеры" aria-hidden="true">
+      <a class="share-fab__link" href="https://t.me/memoriya_stub" target="_blank" rel="noopener noreferrer" aria-label="Telegram"
+        ><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+      <a class="share-fab__link" href="https://wa.me/375293373535" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+        ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+      <a class="share-fab__link" href="viber://chat?number=%2B375293373535" target="_blank" rel="noopener noreferrer" aria-label="Viber"
+        ><i class="fa-brands fa-viber" aria-hidden="true"></i></a>
+      <a class="share-fab__link" href="https://ok.ru/profile/572442294744" target="_blank" rel="noopener noreferrer" aria-label="Одноклассники"
+        ><i class="fa-brands fa-odnoklassniki" aria-hidden="true"></i></a>
+      <a class="share-fab__link" href="https://vk.ru/pamyatniki_sv" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте"
+        ><i class="fa-brands fa-vk" aria-hidden="true"></i></a>
+      <a class="share-fab__link" href="https://www.instagram.com/memoria.bel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+        ><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+    </div>
+    <button type="button" class="share-fab__toggle" id="share-fab-toggle" aria-expanded="false" aria-controls="share-fab-panel" aria-label="Открыть ссылки на соцсети и мессенджеры">
+      <span class="share-fab__granite" aria-hidden="true"></span>
+      <span class="share-fab__veil" aria-hidden="true"></span>
+      <i class="fa-solid fa-paper-plane share-fab__plane" aria-hidden="true"></i>
+    </button>
+  </div>
+
   <div class="toast" id="toast" role="alert" hidden></div>
 
-  <script src="js/app.js?v=46"></script>
+  <div id="ig-lightbox" class="ig-lightbox" hidden aria-hidden="true" tabindex="-1">
+    <button type="button" class="ig-lightbox__backdrop" aria-label="Закрыть просмотр фото"></button>
+    <div class="ig-lightbox__panel" role="dialog" aria-modal="true" aria-label="Увеличенное фото">
+      <button type="button" class="ig-lightbox__close" aria-label="Закрыть">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="ig-lightbox__nav ig-lightbox__nav--prev" aria-label="Предыдущее фото">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <img id="ig-lightbox-img" class="ig-lightbox__img" src="" alt="" decoding="async" width="1600" height="1200" />
+      <button type="button" class="ig-lightbox__nav ig-lightbox__nav--next" aria-label="Следующее фото">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=50"></script>
 </body>
 </html>

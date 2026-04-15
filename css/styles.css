@@ -928,6 +928,11 @@ main {
   }
 }
 
+.services-catalog-cta {
+  text-align: center;
+  margin: -0.35rem auto 1.65rem;
+}
+
 .section-alt {
   background: var(--bg-raised);
   background: linear-gradient(
@@ -1295,8 +1300,28 @@ main {
   font-weight: 600;
 }
 
+.terms-catalog-note {
+  margin: 1rem auto 0;
+  max-width: 44rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.terms-catalog-note a {
+  color: var(--gold-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.terms-catalog-note a:hover,
+.terms-catalog-note a:focus-visible {
+  color: var(--gold-heading-bright);
+  border-bottom-color: var(--gold-dim);
+}
+
 .terms-prose {
-  margin-top: 1.75rem;
+  margin-top: 1.25rem;
 }
 
 /* Преимущества */
@@ -1492,6 +1517,355 @@ main {
 }
 
 /* Подписи под сравнением убраны — отступ не нужен */
+
+/* Галерея — листание фото (после блока «до / после») */
+.ig-gallery {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--stone-edge);
+  outline: none;
+}
+
+.ig-gallery:focus-visible {
+  box-shadow: 0 0 0 2px var(--gold-dim);
+  border-radius: var(--radius);
+}
+
+/* Рамка + стрелки: стрелки position:absolute относительно этого блока */
+.ig-gallery__viewport {
+  position: relative;
+  margin-bottom: 1.1rem;
+}
+
+.ig-gallery__nav {
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  background: rgba(28, 28, 34, 0.88);
+  color: var(--gold-dim);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.ig-gallery__nav:hover,
+.ig-gallery__nav:focus-visible {
+  color: var(--gold-heading-bright);
+  border-color: var(--gold-dim);
+  background: var(--gold-ui-fill);
+}
+
+.ig-gallery__nav:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+/* Grid: иначе figure схлопывается в ноль — внутри только absolute-потомки */
+.ig-gallery__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  width: 100%;
+  min-width: 0;
+  min-height: 12rem;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  max-height: min(68vh, 520px);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--stone);
+  touch-action: none;
+}
+
+.ig-gallery__zoom-hit {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+}
+
+.ig-gallery__zoom-hit:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: -2px;
+}
+
+.ig-gallery__main {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--bg-deep);
+  pointer-events: none;
+}
+
+.ig-gallery__counter {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
+  align-self: end;
+  justify-self: end;
+  margin: 0 0.5rem 0.45rem 0;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  background: rgba(22, 22, 28, 0.82);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.ig-gallery__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  max-height: none;
+}
+
+.ig-gallery__thumb {
+  position: relative;
+  flex: 0 0 auto;
+  width: 4.35rem;
+  height: 4.35rem;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: var(--stone);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.ig-gallery__thumb:hover,
+.ig-gallery__thumb:focus-visible {
+  opacity: 1;
+}
+
+.ig-gallery__thumb:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.ig-gallery__thumb.is-selected {
+  opacity: 1;
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 0 1px var(--gold-glow);
+}
+
+.ig-gallery__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Стрелки у краёв рамки кадра (внутри .ig-gallery__viewport) */
+.ig-gallery__nav--dock {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+}
+
+.ig-gallery__nav--dock.ig-gallery__nav--prev {
+  left: 0.35rem;
+}
+
+.ig-gallery__nav--dock.ig-gallery__nav--next {
+  right: 0.35rem;
+}
+
+@media (max-width: 520px) {
+  .ig-gallery__stage {
+    max-height: min(52vh, 420px);
+  }
+
+  .ig-gallery__nav--dock {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .ig-gallery__thumbs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .ig-gallery__thumb {
+    scroll-snap-align: start;
+  }
+}
+
+/* Лайтбокс галереи фото */
+.ig-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom))
+    max(0.75rem, env(safe-area-inset-left));
+  outline: none;
+}
+
+.ig-lightbox[hidden] {
+  display: none !important;
+}
+
+.ig-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(10, 10, 14, 0.92);
+  cursor: zoom-out;
+}
+
+.ig-lightbox__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ig-lightbox__panel > * {
+  pointer-events: auto;
+}
+
+.ig-lightbox__img {
+  max-width: min(96vw, 1400px);
+  max-height: min(88dvh, 920px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+  background: var(--bg-deep);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ig-lightbox__close {
+  position: absolute;
+  top: max(0.35rem, env(safe-area-inset-top));
+  right: max(0.35rem, env(safe-area-inset-right));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  background: rgba(28, 28, 34, 0.92);
+  color: var(--gold-dim);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.ig-lightbox__close:hover,
+.ig-lightbox__close:focus-visible {
+  color: var(--gold-heading-bright);
+  border-color: var(--gold-dim);
+  background: var(--gold-ui-fill);
+}
+
+.ig-lightbox__close:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.ig-lightbox:not([hidden]) .ig-lightbox__close {
+  position: fixed;
+  z-index: 12003;
+}
+
+.ig-lightbox__nav {
+  position: fixed;
+  top: 50%;
+  z-index: 12001;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  background: rgba(28, 28, 34, 0.88);
+  color: var(--gold-dim);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.ig-lightbox__nav:hover,
+.ig-lightbox__nav:focus-visible {
+  color: var(--gold-heading-bright);
+  border-color: var(--gold-dim);
+  background: var(--gold-ui-fill);
+}
+
+.ig-lightbox__nav:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.ig-lightbox__nav--prev {
+  left: max(0.35rem, env(safe-area-inset-left));
+}
+
+.ig-lightbox__nav--next {
+  right: max(0.35rem, env(safe-area-inset-right));
+}
+
+@media (max-width: 480px) {
+  .ig-lightbox__nav {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+}
 
 /* Формы */
 .field {
@@ -1703,6 +2077,15 @@ main {
   gap: 1.25rem;
 }
 
+@media (min-width: 720px) {
+  .contact-block--catalog {
+    grid-column: 1 / -1;
+    max-width: 40rem;
+    justify-self: center;
+    width: 100%;
+  }
+}
+
 .contact-block {
   padding: 1.25rem;
   background: var(--bg-panel);
@@ -1833,7 +2216,13 @@ main {
   outline: none;
 }
 
-.footer-messengers {
+.footer-social-cluster {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-social-icons {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1841,29 +2230,83 @@ main {
   gap: 0.65rem;
 }
 
+.footer-catalog {
+  margin: 0.65rem 0 0;
+  font-size: 0.88rem;
+}
+
+.footer-catalog a {
+  color: var(--gold-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-line);
+}
+
+.footer-catalog a:hover,
+.footer-catalog a:focus-visible {
+  color: var(--gold-heading-bright);
+  border-bottom-color: var(--gold-dim);
+}
+
+/* Ярлыки мессенджеров / соцсетей: фон «под гранит» */
 .footer-messenger-icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
   font-size: 1.2rem;
-  color: var(--gold-dim);
-  background: var(--bg-panel);
+  color: var(--gold-heading-bright);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   border: 1px solid var(--gold-line);
   text-decoration: none;
-  transition:
-    background 0.2s var(--ease),
-    color 0.2s var(--ease),
-    border-color 0.2s var(--ease);
+  background-color: var(--stone);
+  background-image:
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-deep) 50%, transparent) 0%,
+      color-mix(in srgb, var(--stone) 38%, transparent) 48%,
+      transparent 88%
+    ),
+    url("../content/granit.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.footer-messenger-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s var(--ease);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-messenger-icon i {
+  position: relative;
+  z-index: 1;
 }
 
 .footer-messenger-icon:hover,
 .footer-messenger-icon:focus-visible {
-  background: rgba(210, 179, 102, 0.18);
   color: var(--text);
   outline: none;
+}
+
+.footer-messenger-icon:hover::after,
+.footer-messenger-icon:focus-visible::after {
+  background: rgba(223, 191, 122, 0.16);
+}
+
+.footer-brand-block {
+  text-align: center;
 }
 
 .footer-brand {
@@ -1874,10 +2317,202 @@ main {
   color: var(--gold-dim);
 }
 
+.footer-brand-tag {
+  margin: 0.28rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.footer-legal {
+  width: 100%;
+  max-width: 36rem;
+  margin-top: 0.35rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--stone-edge);
+  text-align: center;
+}
+
+.footer-legal p {
+  margin: 0.4rem 0;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.footer-legal strong {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 .footer-copy {
   margin: 0;
+  padding-top: 0.75rem;
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* Плавающая кнопка: соцсети и мессенджеры */
+/* Контейнер без hit-test: иначе блок flex на всю ширину перехватывает клики справа страницы */
+.share-fab {
+  position: fixed;
+  right: max(0.85rem, env(safe-area-inset-right));
+  bottom: calc(var(--dock-h) + 0.85rem + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: calc(100vw - 1.5rem);
+  pointer-events: none;
+}
+
+.share-fab__toggle {
+  position: relative;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.35rem;
+  height: 3.35rem;
+  padding: 0;
+  border: 1px solid var(--gold-line);
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.48);
+  background: var(--stone);
+}
+
+.share-fab__granite {
+  position: absolute;
+  inset: 0;
+  background: url("../content/granit.jpg") center / cover no-repeat;
+  filter: saturate(0.9) contrast(1.06);
+}
+
+.share-fab__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--bg-deep) 52%, transparent) 0%,
+    color-mix(in srgb, var(--stone) 35%, transparent) 55%,
+    transparent 100%
+  );
+}
+
+.share-fab__plane {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0;
+  font-size: 1.32rem;
+  line-height: 1;
+  color: var(--gold-heading-bright);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  transition: color 0.2s var(--ease), transform 0.22s var(--ease);
+}
+
+.share-fab.is-open .share-fab__plane {
+  transform: rotate(-28deg);
+}
+
+.share-fab__toggle:hover .share-fab__plane,
+.share-fab__toggle:focus-visible .share-fab__plane {
+  color: var(--text);
+}
+
+.share-fab__toggle:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 3px;
+}
+
+.share-fab__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.22s var(--ease),
+    transform 0.22s var(--ease),
+    visibility 0.22s var(--ease);
+}
+
+.share-fab.is-open .share-fab__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.share-fab__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  font-size: 1.12rem;
+  color: var(--gold-heading-bright);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--gold-line);
+  text-decoration: none;
+  background-color: var(--stone);
+  background-image:
+    linear-gradient(
+      158deg,
+      color-mix(in srgb, var(--bg-deep) 50%, transparent) 0%,
+      color-mix(in srgb, var(--stone) 38%, transparent) 48%,
+      transparent 88%
+    ),
+    url("../content/granit.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.share-fab__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s var(--ease);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.share-fab__link i {
+  position: relative;
+  z-index: 1;
+}
+
+.share-fab__link:hover,
+.share-fab__link:focus-visible {
+  color: var(--text);
+  outline: none;
+}
+
+.share-fab__link:hover::after,
+.share-fab__link:focus-visible::after {
+  background: rgba(223, 191, 122, 0.16);
 }
 
 /* Toast */

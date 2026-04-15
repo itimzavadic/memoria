@@ -431,6 +431,271 @@
     })(compareBlocks[ci]);
   }
 
+  /* Галерея фото: миниатюры, стрелки, клавиши ← →; лайтбокс по клику на кадр */
+  var photoGallery = document.getElementById("work-photo-gallery");
+  if (photoGallery) {
+    var mainImg = document.getElementById("ig-gallery-main");
+    var counterEl = photoGallery.querySelector(".ig-gallery__counter");
+    var btnPrev = photoGallery.querySelector(".ig-gallery__nav--prev");
+    var btnNext = photoGallery.querySelector(".ig-gallery__nav--next");
+    var thumbNodes = photoGallery.querySelectorAll(".ig-gallery__thumb");
+    var zoomHit = photoGallery.querySelector(".ig-gallery__zoom-hit");
+    var lightbox = document.getElementById("ig-lightbox");
+    var lightboxImg = document.getElementById("ig-lightbox-img");
+    var lbBackdrop = lightbox ? lightbox.querySelector(".ig-lightbox__backdrop") : null;
+    var lbClose = lightbox ? lightbox.querySelector(".ig-lightbox__close") : null;
+    var lbPrev = lightbox ? lightbox.querySelector(".ig-lightbox__nav--prev") : null;
+    var lbNext = lightbox ? lightbox.querySelector(".ig-lightbox__nav--next") : null;
+    var total = thumbNodes.length;
+    var index = 0;
+    var lightboxOpen = false;
+    var lastFocusBeforeLightbox = null;
+
+    function syncLightboxIfOpen() {
+      if (!lightboxOpen || !lightboxImg || !mainImg) return;
+      var s = mainImg.getAttribute("src");
+      var a = mainImg.getAttribute("alt") || "";
+      if (s) lightboxImg.setAttribute("src", s);
+      lightboxImg.setAttribute("alt", a);
+    }
+
+    function setIndex(nextIdx) {
+      if (!total || !mainImg) return;
+      if (nextIdx < 0) nextIdx = total - 1;
+      if (nextIdx >= total) nextIdx = 0;
+      index = nextIdx;
+      var btn = thumbNodes[index];
+      if (!btn) return;
+      var src = btn.getAttribute("data-ig-src");
+      var alt = btn.getAttribute("data-ig-alt") || "";
+      if (src) mainImg.setAttribute("src", src);
+      mainImg.setAttribute("alt", alt);
+      if (counterEl) counterEl.textContent = index + 1 + " / " + total;
+      for (var ti = 0; ti < thumbNodes.length; ti++) {
+        var t = thumbNodes[ti];
+        var on = ti === index;
+        t.classList.toggle("is-selected", on);
+        if (on) t.setAttribute("aria-current", "true");
+        else t.removeAttribute("aria-current");
+      }
+      syncLightboxIfOpen();
+    }
+
+    function openLightbox() {
+      if (!lightbox || !lightboxImg || !mainImg) return;
+      lastFocusBeforeLightbox = document.activeElement;
+      lightboxOpen = true;
+      syncLightboxIfOpen();
+      lightbox.hidden = false;
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      try {
+        lightbox.focus();
+      } catch (errLb) {
+        /* ignore */
+      }
+    }
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      lightboxOpen = false;
+      lightbox.hidden = true;
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocusBeforeLightbox && typeof lastFocusBeforeLightbox.focus === "function") {
+        try {
+          lastFocusBeforeLightbox.focus();
+        } catch (errF) {
+          /* ignore */
+        }
+      }
+      lastFocusBeforeLightbox = null;
+    }
+
+    function onThumbClick(e) {
+      var t = e.currentTarget;
+      for (var i = 0; i < thumbNodes.length; i++) {
+        if (thumbNodes[i] === t) {
+          setIndex(i);
+          return;
+        }
+      }
+    }
+
+    for (var th = 0; th < thumbNodes.length; th++) {
+      thumbNodes[th].addEventListener("click", onThumbClick);
+    }
+    if (btnPrev) btnPrev.addEventListener("click", function () { setIndex(index - 1); });
+    if (btnNext) btnNext.addEventListener("click", function () { setIndex(index + 1); });
+
+    var SWIPE_PX = 48;
+    var swipeGalPid = null;
+    var swipeGalX0 = 0;
+    var swipeGalSuppressClick = false;
+
+    if (zoomHit) {
+      zoomHit.addEventListener("pointerdown", function (e) {
+        if (typeof e.button === "number" && e.button > 0) return;
+        swipeGalPid = e.pointerId;
+        swipeGalX0 = e.clientX;
+        swipeGalSuppressClick = false;
+        try {
+          zoomHit.setPointerCapture(e.pointerId);
+        } catch (g1) {
+          /* ignore */
+        }
+      });
+      zoomHit.addEventListener("pointerup", function (e) {
+        if (swipeGalPid === null || e.pointerId !== swipeGalPid) return;
+        var dx = e.clientX - swipeGalX0;
+        swipeGalPid = null;
+        try {
+          zoomHit.releasePointerCapture(e.pointerId);
+        } catch (g2) {
+          /* ignore */
+        }
+        if (dx <= -SWIPE_PX) {
+          setIndex(index + 1);
+          swipeGalSuppressClick = true;
+        } else if (dx >= SWIPE_PX) {
+          setIndex(index - 1);
+          swipeGalSuppressClick = true;
+        }
+      });
+      zoomHit.addEventListener("pointercancel", function (e) {
+        if (swipeGalPid !== null && e.pointerId === swipeGalPid) swipeGalPid = null;
+      });
+      zoomHit.addEventListener("click", function (e) {
+        if (swipeGalSuppressClick) {
+          e.preventDefault();
+          e.stopPropagation();
+          swipeGalSuppressClick = false;
+          return;
+        }
+        openLightbox();
+      });
+    }
+
+    var swipeLbPid = null;
+    var swipeLbX0 = 0;
+    if (lightboxImg) {
+      lightboxImg.addEventListener("pointerdown", function (e) {
+        if (!lightboxOpen) return;
+        if (typeof e.button === "number" && e.button > 0) return;
+        swipeLbPid = e.pointerId;
+        swipeLbX0 = e.clientX;
+        try {
+          lightboxImg.setPointerCapture(e.pointerId);
+        } catch (lb1) {
+          /* ignore */
+        }
+      });
+      lightboxImg.addEventListener(
+        "pointermove",
+        function (e) {
+          if (!lightboxOpen || swipeLbPid !== e.pointerId) return;
+          if (e.pointerType === "touch") {
+            try {
+              e.preventDefault();
+            } catch (pe) {
+              /* passive */
+            }
+          }
+        },
+        { passive: false }
+      );
+      lightboxImg.addEventListener("pointerup", function (e) {
+        if (swipeLbPid === null || e.pointerId !== swipeLbPid) return;
+        var dx = e.clientX - swipeLbX0;
+        swipeLbPid = null;
+        try {
+          lightboxImg.releasePointerCapture(e.pointerId);
+        } catch (lb2) {
+          /* ignore */
+        }
+        if (dx <= -SWIPE_PX) setIndex(index + 1);
+        else if (dx >= SWIPE_PX) setIndex(index - 1);
+      });
+      lightboxImg.addEventListener("pointercancel", function (e) {
+        if (swipeLbPid !== null && e.pointerId === swipeLbPid) swipeLbPid = null;
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener("keydown", function (e) {
+        if (!lightboxOpen) return;
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeLightbox();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          setIndex(index - 1);
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          setIndex(index + 1);
+        }
+      });
+    }
+    if (lbBackdrop) lbBackdrop.addEventListener("click", closeLightbox);
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+    if (lbPrev) lbPrev.addEventListener("click", function () { setIndex(index - 1); });
+    if (lbNext) lbNext.addEventListener("click", function () { setIndex(index + 1); });
+
+    photoGallery.addEventListener("keydown", function (e) {
+      if (lightboxOpen) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        setIndex(index - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        setIndex(index + 1);
+      }
+    });
+  }
+
+  /* Плавающая кнопка: гранит + бумажный самолётик, колонка соцсетей */
+  var shareFab = document.getElementById("share-fab");
+  var shareFabToggle = document.getElementById("share-fab-toggle");
+  var shareFabPanel = document.getElementById("share-fab-panel");
+  if (shareFab && shareFabToggle && shareFabPanel) {
+    function setShareFabOpen(open) {
+      shareFab.classList.toggle("is-open", open);
+      shareFabToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      shareFabPanel.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+
+    shareFabToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setShareFabOpen(!shareFab.classList.contains("is-open"));
+    });
+
+    shareFabPanel.addEventListener("click", function (e) {
+      if (e.target && e.target.closest && e.target.closest("a")) {
+        setShareFabOpen(false);
+      }
+    });
+
+    document.addEventListener("click", function () {
+      setShareFabOpen(false);
+    });
+
+    shareFab.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      if (!shareFab.classList.contains("is-open")) return;
+      e.preventDefault();
+      setShareFabOpen(false);
+      try {
+        shareFabToggle.focus();
+      } catch (errSf) {
+        /* ignore */
+      }
+    });
+  }
+
   /** Рамка заголовка секции: обводка «по кругу» при первом попадании в зону видимости */
   var headPlates = document.querySelectorAll(".section-head__plate");
   if (headPlates.length) {
