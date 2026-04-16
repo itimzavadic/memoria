@@ -2216,6 +2216,23 @@ main {
   outline: none;
 }
 
+.footer-email {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.footer-email a {
+  color: var(--gold-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.footer-email a:hover,
+.footer-email a:focus-visible {
+  border-bottom-color: var(--gold-line);
+  outline: none;
+}
+
 .footer-social-cluster {
   width: 100%;
   display: flex;
