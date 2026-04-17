@@ -17,7 +17,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=124" />
+  <link rel="stylesheet" href="css/styles.css?v=130" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
@@ -470,6 +470,39 @@
             </button>
           </div>
         </div>
+
+        <div class="fb-reviews" id="fb-reviews">
+          <h3 class="fb-reviews__title">Отзывы</h3>
+          <p class="fb-reviews__sub">Благодарности заказчиков.</p>
+          <div class="fb-reviews__scroller" tabindex="0" role="region" aria-label="Лента скриншотов отзывов">
+            <div class="fb-reviews__track">
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0820.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 1 из 8" aria-label="Увеличить отзыв 1 из 8">
+                <img src="feedback/IMG_0820.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0821.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 2 из 8" aria-label="Увеличить отзыв 2 из 8">
+                <img src="feedback/IMG_0821.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0822.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 3 из 8" aria-label="Увеличить отзыв 3 из 8">
+                <img src="feedback/IMG_0822.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0823.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 4 из 8" aria-label="Увеличить отзыв 4 из 8">
+                <img src="feedback/IMG_0823.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0824.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 5 из 8" aria-label="Увеличить отзыв 5 из 8">
+                <img src="feedback/IMG_0824.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0825.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 6 из 8" aria-label="Увеличить отзыв 6 из 8">
+                <img src="feedback/IMG_0825.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0826.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 7 из 8" aria-label="Увеличить отзыв 7 из 8">
+                <img src="feedback/IMG_0826.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+              <button type="button" class="fb-reviews__card" data-fb-src="feedback/IMG_0827.jpg?v=20260417" data-fb-alt="Отзыв заказчика, 8 из 8" aria-label="Увеличить отзыв 8 из 8">
+                <img src="feedback/IMG_0827.jpg?v=20260417" alt="" loading="lazy" decoding="async" width="520" height="680" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -713,6 +746,22 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=50"></script>
+  <div id="fb-lightbox" class="fb-lightbox" hidden aria-hidden="true" tabindex="-1">
+    <button type="button" class="fb-lightbox__backdrop" aria-label="Закрыть просмотр отзыва"></button>
+    <div class="fb-lightbox__panel" role="dialog" aria-modal="true" aria-label="Увеличенный отзыв">
+      <button type="button" class="fb-lightbox__close" aria-label="Закрыть">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="fb-lightbox__nav fb-lightbox__nav--prev" aria-label="Предыдущий отзыв">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <img id="fb-lightbox-img" class="fb-lightbox__img" src="" alt="" decoding="async" width="900" height="1200" />
+      <button type="button" class="fb-lightbox__nav fb-lightbox__nav--next" aria-label="Следующий отзыв">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=52"></script>
 </body>
 </html>

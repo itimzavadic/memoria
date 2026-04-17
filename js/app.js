@@ -501,7 +501,9 @@
       lightboxOpen = false;
       lightbox.hidden = true;
       lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      var fbLbEl = document.getElementById("fb-lightbox");
+      var fbOtherOpen = fbLbEl && fbLbEl.hidden === false;
+      if (!fbOtherOpen) document.body.style.overflow = "";
       if (lastFocusBeforeLightbox && typeof lastFocusBeforeLightbox.focus === "function") {
         try {
           lastFocusBeforeLightbox.focus();
@@ -651,6 +653,151 @@
         setIndex(index + 1);
       }
     });
+  }
+
+  /* Лента отзывов: лайтбокс, стрелки, Esc; прокрутка ленты — в разметке */
+  var fbSection = document.getElementById("fb-reviews");
+  if (fbSection) {
+    var fbCards = fbSection.querySelectorAll(".fb-reviews__card");
+    var fbLightbox = document.getElementById("fb-lightbox");
+    var fbLightboxImg = document.getElementById("fb-lightbox-img");
+    var fbBackdrop = fbLightbox ? fbLightbox.querySelector(".fb-lightbox__backdrop") : null;
+    var fbLbClose = fbLightbox ? fbLightbox.querySelector(".fb-lightbox__close") : null;
+    var fbLbPrev = fbLightbox ? fbLightbox.querySelector(".fb-lightbox__nav--prev") : null;
+    var fbLbNext = fbLightbox ? fbLightbox.querySelector(".fb-lightbox__nav--next") : null;
+    var fbTotal = fbCards.length;
+    var fbIndex = 0;
+    var fbLightboxOpen = false;
+    var fbLastFocusBeforeLb = null;
+
+    function igLightboxStillOpen() {
+      var ig = document.getElementById("ig-lightbox");
+      return !!(ig && ig.hidden === false);
+    }
+
+    function showFbAt(nextIdx) {
+      if (!fbTotal || !fbLightboxImg) return;
+      if (nextIdx < 0) nextIdx = fbTotal - 1;
+      if (nextIdx >= fbTotal) nextIdx = 0;
+      fbIndex = nextIdx;
+      var card = fbCards[fbIndex];
+      if (!card) return;
+      var src = card.getAttribute("data-fb-src");
+      var alt = card.getAttribute("data-fb-alt") || "";
+      if (src) fbLightboxImg.setAttribute("src", src);
+      fbLightboxImg.setAttribute("alt", alt);
+    }
+
+    function openFbLightbox() {
+      if (!fbLightbox || !fbLightboxImg) return;
+      fbLastFocusBeforeLb = document.activeElement;
+      fbLightboxOpen = true;
+      fbLightbox.hidden = false;
+      fbLightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      try {
+        fbLightbox.focus();
+      } catch (errFbF) {
+        /* ignore */
+      }
+    }
+
+    function closeFbLightbox() {
+      if (!fbLightbox) return;
+      fbLightboxOpen = false;
+      fbLightbox.hidden = true;
+      fbLightbox.setAttribute("aria-hidden", "true");
+      if (!igLightboxStillOpen()) document.body.style.overflow = "";
+      if (fbLastFocusBeforeLb && typeof fbLastFocusBeforeLb.focus === "function") {
+        try {
+          fbLastFocusBeforeLb.focus();
+        } catch (errFbLf) {
+          /* ignore */
+        }
+      }
+      fbLastFocusBeforeLb = null;
+    }
+
+    function onFbCardClick(e) {
+      var t = e.currentTarget;
+      for (var fci = 0; fci < fbCards.length; fci++) {
+        if (fbCards[fci] === t) {
+          showFbAt(fci);
+          openFbLightbox();
+          return;
+        }
+      }
+    }
+
+    for (var fck = 0; fck < fbCards.length; fck++) {
+      fbCards[fck].addEventListener("click", onFbCardClick);
+    }
+
+    var SWIPE_FB = 48;
+    var swipeFbPid = null;
+    var swipeFbX0 = 0;
+    if (fbLightboxImg) {
+      fbLightboxImg.addEventListener("pointerdown", function (e) {
+        if (!fbLightboxOpen) return;
+        if (typeof e.button === "number" && e.button > 0) return;
+        swipeFbPid = e.pointerId;
+        swipeFbX0 = e.clientX;
+        try {
+          fbLightboxImg.setPointerCapture(e.pointerId);
+        } catch (fbs1) {
+          /* ignore */
+        }
+      });
+      fbLightboxImg.addEventListener(
+        "pointermove",
+        function (e) {
+          if (!fbLightboxOpen || swipeFbPid !== e.pointerId) return;
+          if (e.pointerType === "touch") {
+            try {
+              e.preventDefault();
+            } catch (peFb) {
+              /* passive */
+            }
+          }
+        },
+        { passive: false }
+      );
+      fbLightboxImg.addEventListener("pointerup", function (e) {
+        if (swipeFbPid === null || e.pointerId !== swipeFbPid) return;
+        var dx = e.clientX - swipeFbX0;
+        swipeFbPid = null;
+        try {
+          fbLightboxImg.releasePointerCapture(e.pointerId);
+        } catch (fbs2) {
+          /* ignore */
+        }
+        if (dx <= -SWIPE_FB) showFbAt(fbIndex + 1);
+        else if (dx >= SWIPE_FB) showFbAt(fbIndex - 1);
+      });
+      fbLightboxImg.addEventListener("pointercancel", function (e) {
+        if (swipeFbPid !== null && e.pointerId === swipeFbPid) swipeFbPid = null;
+      });
+    }
+
+    if (fbLightbox) {
+      fbLightbox.addEventListener("keydown", function (e) {
+        if (!fbLightboxOpen) return;
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeFbLightbox();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          showFbAt(fbIndex - 1);
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          showFbAt(fbIndex + 1);
+        }
+      });
+    }
+    if (fbBackdrop) fbBackdrop.addEventListener("click", closeFbLightbox);
+    if (fbLbClose) fbLbClose.addEventListener("click", closeFbLightbox);
+    if (fbLbPrev) fbLbPrev.addEventListener("click", function () { showFbAt(fbIndex - 1); });
+    if (fbLbNext) fbLbNext.addEventListener("click", function () { showFbAt(fbIndex + 1); });
   }
 
   /* Плавающая кнопка: гранит + бумажный самолётик, колонка соцсетей */

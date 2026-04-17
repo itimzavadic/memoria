@@ -1867,6 +1867,245 @@ main {
   }
 }
 
+/* Галерея отзывов (конец секции «Галерея») */
+.fb-reviews {
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--stone-edge);
+}
+
+.fb-reviews__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.8vw, 1.65rem);
+  font-weight: 600;
+  color: var(--gold-heading);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.fb-reviews__sub {
+  margin: 0 auto 1.1rem;
+  max-width: 34rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.fb-reviews__scroller {
+  margin: 0 -0.25rem;
+  padding: 0.25rem 0.25rem 0.65rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--gold-muted) transparent;
+  scrollbar-width: thin;
+}
+
+.fb-reviews__scroller::-webkit-scrollbar {
+  height: 4px;
+}
+
+.fb-reviews__scroller::-webkit-scrollbar-thumb {
+  background: var(--gold-muted);
+  border-radius: 2px;
+}
+
+.fb-reviews__track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  width: max-content;
+  margin: 0 auto;
+  padding: 0 0.15rem;
+}
+
+.fb-reviews__card {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  width: fit-content;
+  max-width: min(78vw, 280px);
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--stone);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.fb-reviews__card:hover,
+.fb-reviews__card:focus-visible {
+  border-color: var(--gold-dim);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.42);
+  outline: none;
+}
+
+.fb-reviews__card:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.fb-reviews__card img {
+  display: block;
+  max-width: min(78vw, 280px);
+  max-height: min(52vh, 420px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  background: var(--bg-deep);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Лайтбокс отзывов (поверх фотогалереи) */
+.fb-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 12100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom))
+    max(0.75rem, env(safe-area-inset-left));
+  outline: none;
+}
+
+.fb-lightbox[hidden] {
+  display: none !important;
+}
+
+.fb-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(10, 10, 14, 0.92);
+  cursor: zoom-out;
+}
+
+.fb-lightbox__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.fb-lightbox__panel > * {
+  pointer-events: auto;
+}
+
+.fb-lightbox__img {
+  max-width: min(96vw, 900px);
+  max-height: min(90dvh, 1100px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+  background: var(--bg-deep);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.fb-lightbox__close {
+  position: fixed;
+  top: max(0.35rem, env(safe-area-inset-top));
+  right: max(0.35rem, env(safe-area-inset-right));
+  z-index: 12103;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  background: rgba(28, 28, 34, 0.92);
+  color: var(--gold-dim);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.fb-lightbox__close:hover,
+.fb-lightbox__close:focus-visible {
+  color: var(--gold-heading-bright);
+  border-color: var(--gold-dim);
+  background: var(--gold-ui-fill);
+}
+
+.fb-lightbox__close:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.fb-lightbox__nav {
+  position: fixed;
+  top: 50%;
+  z-index: 12101;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--gold-line);
+  background: rgba(28, 28, 34, 0.88);
+  color: var(--gold-dim);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.fb-lightbox__nav:hover,
+.fb-lightbox__nav:focus-visible {
+  color: var(--gold-heading-bright);
+  border-color: var(--gold-dim);
+  background: var(--gold-ui-fill);
+}
+
+.fb-lightbox__nav:focus-visible {
+  outline: 2px solid var(--gold-dim);
+  outline-offset: 2px;
+}
+
+.fb-lightbox__nav--prev {
+  left: max(0.35rem, env(safe-area-inset-left));
+}
+
+.fb-lightbox__nav--next {
+  right: max(0.35rem, env(safe-area-inset-right));
+}
+
+@media (max-width: 480px) {
+  .fb-lightbox__nav {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+}
+
 /* Формы */
 .field {
   display: flex;
@@ -2240,11 +2479,14 @@ main {
 }
 
 .footer-social-icons {
+  --footer-soc-gap: clamp(0.2rem, 1.15vw, 0.6rem);
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  gap: var(--footer-soc-gap);
 }
 
 .footer-catalog {
@@ -2270,12 +2512,18 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  align-self: center;
+  /* Квадрат от ширины: % по высоте при flex-row и auto-height родителя даёт овалы (Safari и др.) */
+  width: min(2.5rem, calc((100% - 6 * var(--footer-soc-gap, 0.35rem)) / 7));
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
   isolation: isolate;
-  font-size: 1.2rem;
+  font-size: clamp(0.82rem, 2.85vw, 1.2rem);
+  line-height: 1;
   color: var(--gold-heading-bright);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   border: 1px solid var(--gold-line);
@@ -2309,6 +2557,7 @@ main {
 .footer-messenger-icon i {
   position: relative;
   z-index: 1;
+  line-height: 1;
 }
 
 .footer-messenger-icon:hover,
@@ -2385,6 +2634,13 @@ main {
   gap: 0.5rem;
   max-width: calc(100vw - 1.5rem);
   pointer-events: none;
+}
+
+/* ПК: чуть левее, чтобы не наезжать на зону горизонтального скролла дока */
+@media (min-width: 900px) {
+  .share-fab {
+    right: max(1.85rem, calc(env(safe-area-inset-right, 0px) + 1.1rem));
+  }
 }
 
 .share-fab__toggle {
