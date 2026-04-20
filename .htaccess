@@ -1,10 +1,9 @@
 RewriteEngine On
 
-# 301: always use canonical host+scheme
+# 301: canonical URL for all requests
 # Canonical: https://мемория.бел/ (punycode: xn--e1agkbkm0i.xn--90ais)
-RewriteCond %{HTTP_HOST} !^xn--e1agkbkm0i\.xn--90ais$ [NC]
-RewriteRule ^ https://xn--e1agkbkm0i.xn--90ais%{REQUEST_URI} [R=301,L]
-
-# 301: force HTTPS on canonical host
+# Works both on direct Apache HTTPS and behind reverse proxy/CDN.
+RewriteCond %{HTTP_HOST} !^xn--e1agkbkm0i\.xn--90ais$ [NC,OR]
 RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://xn--e1agkbkm0i.xn--90ais%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://xn--e1agkbkm0i.xn--90ais%{REQUEST_URI} [R=301,L,NE]
