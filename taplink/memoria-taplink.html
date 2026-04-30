@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#22222a" />
+  <meta name="color-scheme" content="dark" />
+  <title>Мемория — студия гранита</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg-deep: #22222a;
+      --bg-panel: #2c2c36;
+      --text: #f5f3ef;
+      --text-muted: #c8c3ba;
+      --gold: #dfbf7a;
+      --gold-soft: rgba(223, 191, 122, 0.18);
+      --gold-line: rgba(223, 191, 122, 0.38);
+      --text-on-gold: #141418;
+      --gold-heading: #edd498;
+      --radius: 2px;
+      --font-sans: "Manrope", system-ui, sans-serif;
+      --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--text);
+      background: var(--bg-deep);
+      -webkit-font-smoothing: antialiased;
+      padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+        max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 15% 0%, rgba(223, 191, 122, 0.07) 0%, transparent 52%),
+        radial-gradient(circle at 50% 100%, rgba(223, 191, 122, 0.04) 0%, transparent 42%),
+        var(--bg-deep);
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .brand h1 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.85rem, 8vw, 2.35rem);
+      letter-spacing: 0.12em;
+      color: var(--gold-heading);
+      margin: 0;
+      text-shadow:
+        0 0 28px rgba(212, 165, 72, 0.35),
+        0 2px 4px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand p {
+      margin: 0.5rem 0 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .lead {
+      text-align: center;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      margin: 0 0 1.5rem;
+      line-height: 1.65;
+    }
+
+    .cta {
+      display: block;
+      width: 100%;
+      padding: 0.95rem 1.25rem;
+      margin-bottom: 0.85rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(184, 160, 100, 0.55);
+      background: var(--gold);
+      color: var(--text-on-gold);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, 0.38);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      background: #e4cc92;
+      border-color: #b8a064;
+      outline: none;
+    }
+
+    .cta:active {
+      transform: translateY(1px);
+    }
+
+    .cta sub {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      opacity: 0.85;
+    }
+
+    .contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--gold-line);
+      border-radius: var(--radius);
+      background: var(--bg-panel);
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      text-decoration: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    .link-row:hover,
+    .link-row:focus-visible {
+      border-color: var(--gold);
+      color: var(--text);
+      outline: none;
+    }
+
+    .link-row i {
+      width: 1.1rem;
+      text-align: center;
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 0 0 0.75rem;
+    }
+
+    .social {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+      border-radius: var(--radius);
+      border: 1px solid var(--gold-line);
+      background: rgba(54, 54, 64, 0.55);
+      color: var(--gold-heading);
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .social a:hover,
+    .social a:focus-visible {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+      color: var(--text);
+      outline: none;
+      box-shadow: 0 0 0 1px rgba(223, 191, 122, 0.12);
+    }
+
+    .foot {
+      margin-top: 1.75rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    @media (min-width: 420px) {
+      .social {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="brand">
+      <h1>Мемория</h1>
+      <p>Студия гранита</p>
+    </header>
+
+    <p class="lead">
+      Памятники и благоустройство захоронений под ключ. Гарантия и рассрочка — как на основном сайте.
+    </p>
+
+    <a class="cta" href="https://мемория.бел/" target="_blank" rel="noopener noreferrer">
+      Перейти на сайт
+      <sub>каталог, галерея, контакты</sub>
+    </a>
+
+    <div class="contacts">
+      <a class="link-row" href="tel:+375293373535">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        <span>+375 (29) 337-35-35</span>
+      </a>
+      <a class="link-row" href="tel:+375447072075">
+        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        <span>+375 (44) 707-20-75</span>
+      </a>
+      <a class="link-row" href="mailto:pamyatniki-sv@mail.ru">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        <span>pamyatniki-sv@mail.ru</span>
+      </a>
+    </div>
+
+    <p class="section-title">Мы в соцсетях и мессенджерах</p>
+    <nav class="social" aria-label="Социальные сети и мессенджеры">
+      <a href="https://t.me/+375447072075" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">
+        <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+      </a>
+      <a href="https://wa.me/375447072075" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+      </a>
+      <a href="viber://chat?number=%2B375447072075" target="_blank" rel="noopener noreferrer" aria-label="Viber" title="Viber">
+        <i class="fa-brands fa-viber" aria-hidden="true"></i>
+      </a>
+      <a href="https://ok.ru/profile/572442294744" target="_blank" rel="noopener noreferrer" aria-label="Одноклассники" title="Одноклассники">
+        <i class="fa-brands fa-odnoklassniki" aria-hidden="true"></i>
+      </a>
+      <a href="https://vk.ru/memoria_bel" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте" title="ВКонтакте">
+        <i class="fa-brands fa-vk" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.instagram.com/memoria.bel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.tiktok.com/@memoria.bel?_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">
+        <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+      </a>
+    </nav>
+
+    <p class="foot">Светлогорск · Жлобин · Речица · Рогачев · Бобруйск</p>
+  </div>
+</body>
+</html>
