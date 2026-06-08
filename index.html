@@ -138,7 +138,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=130" />
+  <link rel="stylesheet" href="css/styles.css?v=131" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
@@ -812,6 +812,9 @@
       <p class="footer-catalog">
         <a href="catalog.pdf" target="_blank" rel="noopener noreferrer">Каталог изделий (PDF)</a>
       </p>
+      <p class="footer-policy">
+        <button type="button" class="footer-policy__btn" id="policy-open-btn">Политика обработки данных</button>
+      </p>
       <div class="footer-legal">
         <h2 class="visually-hidden">Юридическая информация</h2>
         <p>ИП Климович Иван Анатольевич</p>
@@ -867,6 +870,21 @@
     </div>
   </div>
 
+  <div id="policy-modal" class="policy-modal" hidden aria-hidden="true" tabindex="-1">
+    <button type="button" class="policy-modal__backdrop" aria-label="Закрыть политику обработки данных"></button>
+    <div class="policy-modal__panel" role="dialog" aria-modal="true" aria-labelledby="policy-modal-title">
+      <header class="policy-modal__head">
+        <h2 class="policy-modal__head-title" id="policy-modal-title">Политика обработки данных</h2>
+        <button type="button" class="policy-modal__close" aria-label="Закрыть">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+      <div class="policy-modal__body" id="policy-modal-body" tabindex="0" aria-live="polite">
+        <p class="policy-modal__loading">Загрузка…</p>
+      </div>
+    </div>
+  </div>
+
   <div id="fb-lightbox" class="fb-lightbox" hidden aria-hidden="true" tabindex="-1">
     <button type="button" class="fb-lightbox__backdrop" aria-label="Закрыть просмотр отзыва"></button>
     <div class="fb-lightbox__panel" role="dialog" aria-modal="true" aria-label="Увеличенный отзыв">
@@ -883,6 +901,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=52"></script>
+  <script src="js/app.js?v=53"></script>
 </body>
 </html>

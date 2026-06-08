@@ -800,6 +800,88 @@
     if (fbLbNext) fbLbNext.addEventListener("click", function () { showFbAt(fbIndex + 1); });
   }
 
+  /* Политика обработки данных: модальное окно */
+  var policyOpenBtn = document.getElementById("policy-open-btn");
+  var policyModal = document.getElementById("policy-modal");
+  var policyModalBody = document.getElementById("policy-modal-body");
+  if (policyOpenBtn && policyModal && policyModalBody) {
+    var policyBackdrop = policyModal.querySelector(".policy-modal__backdrop");
+    var policyClose = policyModal.querySelector(".policy-modal__close");
+    var policyOpen = false;
+    var policyLoaded = false;
+    var policyLoading = false;
+    var policyLastFocus = null;
+
+    function anyLightboxOpen() {
+      var ig = document.getElementById("ig-lightbox");
+      var fb = document.getElementById("fb-lightbox");
+      return !!((ig && ig.hidden === false) || (fb && fb.hidden === false));
+    }
+
+    function loadPolicyContent() {
+      if (policyLoaded || policyLoading) return Promise.resolve();
+      policyLoading = true;
+      policyModalBody.innerHTML = '<p class="policy-modal__loading">Загрузка…</p>';
+      return fetch("policy/privacy.html", { credentials: "same-origin" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("policy fetch failed");
+          return res.text();
+        })
+        .then(function (html) {
+          policyModalBody.innerHTML = html;
+          policyLoaded = true;
+        })
+        .catch(function () {
+          policyModalBody.innerHTML =
+            '<p class="policy-modal__loading">Не удалось загрузить документ. Попробуйте обновить страницу.</p>';
+        })
+        .finally(function () {
+          policyLoading = false;
+        });
+    }
+
+    function openPolicyModal() {
+      policyLastFocus = document.activeElement;
+      policyOpen = true;
+      policyModal.hidden = false;
+      policyModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      loadPolicyContent().then(function () {
+        try {
+          policyModal.focus();
+        } catch (errPolF) {
+          /* ignore */
+        }
+      });
+    }
+
+    function closePolicyModal() {
+      policyOpen = false;
+      policyModal.hidden = true;
+      policyModal.setAttribute("aria-hidden", "true");
+      if (!anyLightboxOpen()) document.body.style.overflow = "";
+      if (policyLastFocus && typeof policyLastFocus.focus === "function") {
+        try {
+          policyLastFocus.focus();
+        } catch (errPolLf) {
+          /* ignore */
+        }
+      }
+      policyLastFocus = null;
+    }
+
+    policyOpenBtn.addEventListener("click", openPolicyModal);
+    if (policyBackdrop) policyBackdrop.addEventListener("click", closePolicyModal);
+    if (policyClose) policyClose.addEventListener("click", closePolicyModal);
+    policyModal.addEventListener("keydown", function (e) {
+      if (!policyOpen) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePolicyModal();
+      }
+    });
+  }
+
   /* Плавающая кнопка: гранит + бумажный самолётик, колонка соцсетей */
   var shareFab = document.getElementById("share-fab");
   var shareFabToggle = document.getElementById("share-fab-toggle");
