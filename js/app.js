@@ -69,6 +69,35 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  function bindOptimizedFallback(img) {
+    if (!img) return;
+    var fallbackSrc = img.getAttribute("data-fallback");
+    if (!fallbackSrc) return;
+    img.addEventListener(
+      "error",
+      function onImgFallback() {
+        img.removeEventListener("error", onImgFallback);
+        img.src = fallbackSrc;
+      },
+      { once: true }
+    );
+  }
+
+  function setOptimizedImg(img, webpSrc, fallbackSrc) {
+    if (!img || !webpSrc) return;
+    bindOptimizedFallback(img);
+    img.src = webpSrc;
+  }
+
+  function initOptimizedImages() {
+    var optImgs = document.querySelectorAll("img[data-fallback]");
+    for (var oi = 0; oi < optImgs.length; oi++) {
+      bindOptimizedFallback(optImgs[oi]);
+    }
+  }
+
+  initOptimizedImages();
+
   var dock = document.getElementById("site-dock");
   if (dock) {
     var dockLinks = dock.querySelectorAll('a[href^="#"]');
@@ -356,6 +385,18 @@
 
   /* Галерея: «до / после» — клавиатура с range; мышь/тач — перетаскивание по кадру (Pointer Events) */
   var compareBlocks = document.querySelectorAll(".compare__view");
+
+  function syncCompareBeforeWidths() {
+    for (var sw = 0; sw < compareBlocks.length; sw++) {
+      var viewW = compareBlocks[sw].offsetWidth;
+      if (viewW <= 0) continue;
+      var beforeImgs = compareBlocks[sw].querySelectorAll(".compare__img--before");
+      for (var bi = 0; bi < beforeImgs.length; bi++) {
+        beforeImgs[bi].style.width = viewW + "px";
+      }
+    }
+  }
+
   for (var ci = 0; ci < compareBlocks.length; ci++) {
     (function (view) {
       var range = view.querySelector(".compare__range");
@@ -365,7 +406,7 @@
         if (Number.isNaN(pct)) pct = 50;
         if (pct < 0) pct = 0;
         if (pct > 100) pct = 100;
-        view.style.setProperty("--compare-pct", pct + "%");
+        view.style.setProperty("--compare-pct", String(pct));
         range.value = String(Math.round(pct));
       }
 
@@ -431,7 +472,13 @@
     })(compareBlocks[ci]);
   }
 
-  /* Галерея фото: миниатюры, стрелки, клавиши ← →; лайтбокс по клику на кадр */
+  if (compareBlocks.length) {
+    syncCompareBeforeWidths();
+    window.addEventListener("resize", syncCompareBeforeWidths);
+    window.addEventListener("load", syncCompareBeforeWidths);
+  }
+
+  /* Галерея фото: миниатюры, стрелки, клавиши ← →; лайтбокс по клику на кадру */
   var photoGallery = document.getElementById("work-photo-gallery");
   if (photoGallery) {
     var mainImg = document.getElementById("ig-gallery-main");
@@ -467,8 +514,9 @@
       var btn = thumbNodes[index];
       if (!btn) return;
       var src = btn.getAttribute("data-ig-src");
+      var fallback = btn.getAttribute("data-ig-fallback");
       var alt = btn.getAttribute("data-ig-alt") || "";
-      if (src) mainImg.setAttribute("src", src);
+      if (src) setOptimizedImg(mainImg, src, fallback);
       mainImg.setAttribute("alt", alt);
       if (counterEl) counterEl.textContent = index + 1 + " / " + total;
       for (var ti = 0; ti < thumbNodes.length; ti++) {

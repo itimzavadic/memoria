@@ -47,7 +47,7 @@
   />
   <meta
     property="og:image"
-    content="https://www.мемория.бел/gallery/IMG_0763.JPG"
+    content="https://мемория.бел/gallery/IMG_0763.jpg"
   />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="800" />
@@ -60,7 +60,7 @@
   />
   <meta
     name="twitter:image"
-    content="https://www.мемория.бел/gallery/IMG_0763.JPG"
+    content="https://мемория.бел/gallery/IMG_0763.jpg"
   />
   <script type="application/ld+json">
   {
@@ -131,14 +131,23 @@
   <link rel="apple-touch-icon" href="content/favicon dark.png?v=20260420" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    media="print"
+    onload="this.media='all'"
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="css/styles.css?v=131" />
+  <noscript
+    ><link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+  /></noscript>
+  <link rel="stylesheet" href="css/styles.css?v=139" />
 </head>
 <body>
   <a class="skip-link" href="#main">К основному содержимому</a>
@@ -170,27 +179,48 @@
       Воронка: главная → услуги → преимущества → калькулятор → галерея → условия → контакты.
       Калькулятор и чаты не в якорном меню; звонок — действие (кнопка в шапке, в hero и в подвале), не отдельный блок.
     -->
-    <section id="hero" class="hero">
-      <div class="hero-logo-bg" aria-hidden="true">
-        <img src="content/favicon gold.png" alt="" width="512" height="512" decoding="async" />
-      </div>
-      <div class="hero-inner">
-        <h1>Мемория</h1>
-        <p class="eyebrow">Студия гранита</p>
-        <p class="lead">
-          ❝ Человек умирает тогда, когда умирает последнее воспоминание о нём. ❞ — на нашем граните память будет жить вечно.
-        </p>
-        <p class="hero-tagline">
-          Благоустройство могил и памятных комплексов под ключ: памятники, ограды, мемориальные решения и уход за захоронениями.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="tel:+375293373535">Позвонить</a>
-          <a class="btn btn-ghost" href="#calculator">Примерный расчёт</a>
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="hero-f-accent" aria-hidden="true"></div>
+      <div class="container hero__shell">
+        <div class="hero-f">
+          <header class="hero-f__mast">
+            <p class="eyebrow">Студия гранита · Светлогорск</p>
+            <h1 id="hero-title">Мемория</h1>
+          </header>
+
+          <div class="hero-f__body">
+            <div class="hero-f__copy">
+              <blockquote class="hero-quote">
+                <p>Человек умирает тогда, когда умирает последнее воспоминание о нём. На нашем граните память будет жить вечно.</p>
+              </blockquote>
+              <p class="hero-tagline">
+                Благоустройство могил и памятных комплексов под ключ: памятники, ограды, мемориальные решения и уход за захоронениями.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="tel:+375293373535">Позвонить</a>
+                <a class="btn btn-ghost" href="#calculator">Примерный расчёт</a>
+              </div>
+              <ul class="hero-trust" aria-label="Преимущества студии">
+                <li>10+ лет на рынке</li>
+                <li>Гарантия 5 лет</li>
+                <li>Рассрочка до 6 мес.</li>
+                <li>Работа без подрядчиков</li>
+              </ul>
+            </div>
+
+            <figure class="hero-f__visual">
+              <img
+                class="hero-f__mark"
+                src="content/favicon gold.png"
+                alt=""
+                width="512"
+                height="512"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </figure>
+          </div>
         </div>
-        <p class="hero-note">
-          Более 10 лет на рынке. Расширенная гарантия на работы, рассрочка без переплат до 6&nbsp;месяцев, договор. Работаем без
-          подрядчиков.
-        </p>
       </div>
     </section>
 
@@ -417,25 +447,27 @@
         </header>
         <div class="gallery-grid">
           <figure class="compare">
-            <div class="compare__view" style="--compare-pct: 50%">
+            <div class="compare__view" style="--compare-pct: 50">
               <img
                 class="compare__img compare__img--after"
-                src="content/1.jpg"
+                src="content/1.jpg?v=20260608"
                 alt="Объект 1 — после работ"
                 width="800"
                 height="600"
                 loading="eager"
                 decoding="async"
               />
-              <img
-                class="compare__img compare__img--before"
-                src="content/1.1.jpg"
-                alt="Объект 1 — до работ"
-                width="800"
-                height="600"
-                loading="eager"
-                decoding="async"
-              />
+              <div class="compare__before-pane">
+                <img
+                  class="compare__img compare__img--before"
+                  src="content/1.1.jpg?v=20260608"
+                  alt="Объект 1 — до работ"
+                  width="800"
+                  height="600"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
               <div class="compare__divider" aria-hidden="true"></div>
               <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
               <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
@@ -446,25 +478,27 @@
             </div>
           </figure>
           <figure class="compare">
-            <div class="compare__view" style="--compare-pct: 50%">
+            <div class="compare__view" style="--compare-pct: 50">
               <img
                 class="compare__img compare__img--after"
-                src="content/2.jpg"
+                src="content/2.jpg?v=20260608"
                 alt="Объект 2 — после работ"
                 width="800"
                 height="600"
                 loading="lazy"
                 decoding="async"
               />
-              <img
-                class="compare__img compare__img--before"
-                src="content/2.2.jpg"
-                alt="Объект 2 — до работ"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="compare__before-pane">
+                <img
+                  class="compare__img compare__img--before"
+                  src="content/2.2.jpg?v=20260608"
+                  alt="Объект 2 — до работ"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="compare__divider" aria-hidden="true"></div>
               <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
               <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
@@ -475,25 +509,27 @@
             </div>
           </figure>
           <figure class="compare">
-            <div class="compare__view" style="--compare-pct: 50%">
+            <div class="compare__view" style="--compare-pct: 50">
               <img
                 class="compare__img compare__img--after"
-                src="content/3.jpg"
+                src="content/3.jpg?v=20260608"
                 alt="Объект 3 — после работ"
                 width="800"
                 height="600"
                 loading="lazy"
                 decoding="async"
               />
-              <img
-                class="compare__img compare__img--before"
-                src="content/3.3.jpg"
-                alt="Объект 3 — до работ"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="compare__before-pane">
+                <img
+                  class="compare__img compare__img--before"
+                  src="content/3.3.jpg?v=20260608"
+                  alt="Объект 3 — до работ"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="compare__divider" aria-hidden="true"></div>
               <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
               <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
@@ -504,25 +540,27 @@
             </div>
           </figure>
           <figure class="compare">
-            <div class="compare__view" style="--compare-pct: 50%">
+            <div class="compare__view" style="--compare-pct: 50">
               <img
                 class="compare__img compare__img--after"
-                src="content/4.jpg"
+                src="content/4.jpg?v=20260608"
                 alt="Объект 4 — после работ"
                 width="800"
                 height="600"
                 loading="lazy"
                 decoding="async"
               />
-              <img
-                class="compare__img compare__img--before"
-                src="content/4.4.jpg"
-                alt="Объект 4 — до работ"
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="compare__before-pane">
+                <img
+                  class="compare__img compare__img--before"
+                  src="content/4.4.jpg?v=20260608"
+                  alt="Объект 4 — до работ"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <div class="compare__divider" aria-hidden="true"></div>
               <span class="compare__badge compare__badge--before" aria-hidden="true">До</span>
               <span class="compare__badge compare__badge--after" aria-hidden="true">После</span>
@@ -541,7 +579,8 @@
                 <img
                   id="ig-gallery-main"
                   class="ig-gallery__main"
-                  src="gallery/IMG_0763.JPG"
+                  src="gallery/IMG_0763.webp"
+                  data-fallback="gallery/IMG_0763.jpg"
                   alt="Работы студии «Мемория», фото 1 из 10"
                   width="1200"
                   height="800"
@@ -559,35 +598,35 @@
             </button>
           </div>
           <div class="ig-gallery__thumbs" role="group" aria-label="Миниатюры галереи">
-            <button type="button" class="ig-gallery__thumb is-selected" aria-label="Фото 1 из 10" aria-current="true" data-ig-src="gallery/IMG_0763.JPG" data-ig-alt="Работы студии «Мемория», фото 1 из 10">
-              <img src="gallery/IMG_0763.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb is-selected" aria-label="Фото 1 из 10" aria-current="true" data-ig-src="gallery/IMG_0763.webp" data-ig-fallback="gallery/IMG_0763.jpg" data-ig-alt="Работы студии «Мемория», фото 1 из 10">
+              <img src="gallery/thumbs/IMG_0763.webp" data-fallback="gallery/thumbs/IMG_0763.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 2 из 10" data-ig-src="gallery/IMG_0764.JPG" data-ig-alt="Работы студии «Мемория», фото 2 из 10">
-              <img src="gallery/IMG_0764.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 2 из 10" data-ig-src="gallery/IMG_0764.webp" data-ig-fallback="gallery/IMG_0764.jpg" data-ig-alt="Работы студии «Мемория», фото 2 из 10">
+              <img src="gallery/thumbs/IMG_0764.webp" data-fallback="gallery/thumbs/IMG_0764.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 3 из 10" data-ig-src="gallery/IMG_0766.JPG" data-ig-alt="Работы студии «Мемория», фото 3 из 10">
-              <img src="gallery/IMG_0766.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 3 из 10" data-ig-src="gallery/IMG_0766.webp" data-ig-fallback="gallery/IMG_0766.jpg" data-ig-alt="Работы студии «Мемория», фото 3 из 10">
+              <img src="gallery/thumbs/IMG_0766.webp" data-fallback="gallery/thumbs/IMG_0766.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 4 из 10" data-ig-src="gallery/IMG_0767.JPG" data-ig-alt="Работы студии «Мемория», фото 4 из 10">
-              <img src="gallery/IMG_0767.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 4 из 10" data-ig-src="gallery/IMG_0767.webp" data-ig-fallback="gallery/IMG_0767.jpg" data-ig-alt="Работы студии «Мемория», фото 4 из 10">
+              <img src="gallery/thumbs/IMG_0767.webp" data-fallback="gallery/thumbs/IMG_0767.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 5 из 10" data-ig-src="gallery/IMG_0768.JPG" data-ig-alt="Работы студии «Мемория», фото 5 из 10">
-              <img src="gallery/IMG_0768.JPG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 5 из 10" data-ig-src="gallery/IMG_0768.webp" data-ig-fallback="gallery/IMG_0768.jpg" data-ig-alt="Работы студии «Мемория», фото 5 из 10">
+              <img src="gallery/thumbs/IMG_0768.webp" data-fallback="gallery/thumbs/IMG_0768.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 6 из 10" data-ig-src="gallery/IMG_7021.PNG" data-ig-alt="Работы студии «Мемория», фото 6 из 10">
-              <img src="gallery/IMG_7021.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 6 из 10" data-ig-src="gallery/IMG_7021.webp" data-ig-fallback="gallery/IMG_7021.jpg" data-ig-alt="Работы студии «Мемория», фото 6 из 10">
+              <img src="gallery/thumbs/IMG_7021.webp" data-fallback="gallery/thumbs/IMG_7021.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 7 из 10" data-ig-src="gallery/IMG_7022.PNG" data-ig-alt="Работы студии «Мемория», фото 7 из 10">
-              <img src="gallery/IMG_7022.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 7 из 10" data-ig-src="gallery/IMG_7022.webp" data-ig-fallback="gallery/IMG_7022.jpg" data-ig-alt="Работы студии «Мемория», фото 7 из 10">
+              <img src="gallery/thumbs/IMG_7022.webp" data-fallback="gallery/thumbs/IMG_7022.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 8 из 10" data-ig-src="gallery/IMG_7023.PNG" data-ig-alt="Работы студии «Мемория», фото 8 из 10">
-              <img src="gallery/IMG_7023.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 8 из 10" data-ig-src="gallery/IMG_7023.webp" data-ig-fallback="gallery/IMG_7023.jpg" data-ig-alt="Работы студии «Мемория», фото 8 из 10">
+              <img src="gallery/thumbs/IMG_7023.webp" data-fallback="gallery/thumbs/IMG_7023.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 9 из 10" data-ig-src="gallery/IMG_7024.PNG" data-ig-alt="Работы студии «Мемория», фото 9 из 10">
-              <img src="gallery/IMG_7024.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 9 из 10" data-ig-src="gallery/IMG_7024.webp" data-ig-fallback="gallery/IMG_7024.jpg" data-ig-alt="Работы студии «Мемория», фото 9 из 10">
+              <img src="gallery/thumbs/IMG_7024.webp" data-fallback="gallery/thumbs/IMG_7024.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
-            <button type="button" class="ig-gallery__thumb" aria-label="Фото 10 из 10" data-ig-src="gallery/IMG_7025.PNG" data-ig-alt="Работы студии «Мемория», фото 10 из 10">
-              <img src="gallery/IMG_7025.PNG" alt="" width="160" height="120" loading="lazy" decoding="async" />
+            <button type="button" class="ig-gallery__thumb" aria-label="Фото 10 из 10" data-ig-src="gallery/IMG_7025.webp" data-ig-fallback="gallery/IMG_7025.jpg" data-ig-alt="Работы студии «Мемория», фото 10 из 10">
+              <img src="gallery/thumbs/IMG_7025.webp" data-fallback="gallery/thumbs/IMG_7025.jpg" alt="" width="160" height="120" loading="lazy" decoding="async" />
             </button>
           </div>
         </div>
@@ -901,6 +940,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=53"></script>
+  <script src="js/app.js?v=56"></script>
 </body>
 </html>

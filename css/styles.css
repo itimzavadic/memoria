@@ -82,11 +82,8 @@ body {
 }
 
 .grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  content: none;
+  display: none;
 }
 
 /* Логотип в глубине фона: расставленные копии + мягкий повтор по длине страницы */
@@ -233,7 +230,9 @@ body {
   height: min(132vmin, 980px);
   transform-origin: 0 0;
   mix-blend-mode: screen;
-  filter: blur(0.35px);
+  filter: none;
+  opacity: 0.5;
+  transform: scale(1);
   background: radial-gradient(
     circle at 0% 0%,
     rgba(255, 252, 248, 0.72) 0%,
@@ -241,7 +240,7 @@ body {
     rgba(220, 190, 130, 0.2) 32%,
     transparent 58%
   );
-  animation: sun-from-logo-core 8s ease-in-out infinite alternate;
+  animation: none;
 }
 
 /* Лучи + пыль только внутри лучей; вращение одной анимацией на контейнере */
@@ -265,7 +264,7 @@ body {
   );
   mix-blend-mode: screen;
   opacity: 0.55;
-  animation: sun-from-logo-rays 15s ease-in-out infinite alternate;
+  animation: none;
 }
 
 .sun-from-logo__dust {
@@ -298,7 +297,8 @@ body {
     #000 14%,
     #000 100%
   );
-  animation: sun-from-logo-dust-glint 4.5s ease-in-out infinite alternate;
+  animation: none;
+  display: none;
 }
 
 @keyframes sun-from-logo-core {
@@ -334,7 +334,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .logo-ambient__m,
-  .hero-logo-bg {
+  .hero-f__mark {
     filter: none;
   }
 
@@ -354,11 +354,34 @@ body {
   }
 }
 
-/* Тач: только отключаем programmatic smooth-scroll — визуал как на ПК (единый фон, blur, blend) */
+/* Тач: без smooth-scroll; упрощаем декор для плавности */
 @media (hover: none) and (pointer: coarse) {
   html {
     scroll-behavior: auto;
   }
+
+  .sun-from-logo__rays {
+    display: none;
+  }
+
+  .grain {
+    opacity: 0.2;
+  }
+}
+
+/* Ниже первого экрана — отложенная отрисовка секций */
+#services,
+#advantages,
+#calculator,
+#terms,
+#contacts {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
+}
+
+/* Галерея без content-visibility: иначе ломается clip-path в блоках «до/после» */
+#gallery {
+  contain-intrinsic-size: auto 640px;
 }
 
 .skip-link {
@@ -400,8 +423,8 @@ body {
   padding-top: calc(0.5rem + env(safe-area-inset-top, 0px));
   background: linear-gradient(180deg, rgba(46, 46, 56, 0.98) 0%, rgba(30, 30, 38, 0.98) 100%);
   border-bottom: 1px solid var(--gold-line);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .site-header-extras {
@@ -497,8 +520,8 @@ body {
   background: linear-gradient(0deg, rgba(42, 42, 50, 0.98) 0%, rgba(28, 28, 36, 0.97) 100%);
   border-top: 1px solid var(--gold-line);
   box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.38);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .site-dock-scroller {
@@ -949,96 +972,181 @@ main {
   border-top: none;
 }
 
-/* Hero */
+/* Hero — F-layout: верхняя планка + левая колонка контента + правая визуальная зона */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(4rem, 12vw, 7rem) 1.25rem clamp(3.5rem, 8vw, 5rem);
-  text-align: center;
+  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(2.75rem, 7vw, 4.5rem);
+  text-align: left;
   border-bottom: 1px solid var(--gold-line);
-  background: radial-gradient(ellipse 85% 60% at 50% 0%, rgba(223, 191, 122, 0.12) 0%, transparent 58%);
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(223, 191, 122, 0.14) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 88% 20%, rgba(223, 191, 122, 0.08) 0%, transparent 62%);
 }
 
-/* Крупный знак без названия (файл-марк; при появлении отдельного PNG замените src в HTML) */
-.hero-logo-bg {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  z-index: 0;
-  /* Не больше блока героя: vw на iOS часто шире видимой области и раздувает страницу */
-  width: min(38rem, 100%);
-  max-width: none;
+.hero-f-accent {
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 0.28;
-  mix-blend-mode: screen;
-  filter: blur(0.45px);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.55;
+  background:
+    linear-gradient(var(--gold-line), var(--gold-line)) 0 clamp(5.5rem, 14vw, 7.5rem) / min(68%, 36rem) 1px no-repeat,
+    linear-gradient(var(--gold-line), var(--gold-line)) 0 clamp(5.5rem, 14vw, 7.5rem) / 1px min(58%, 22rem) no-repeat,
+    linear-gradient(var(--gold-line), var(--gold-line)) 0 clamp(11.5rem, 24vw, 14rem) / min(42%, 20rem) 1px no-repeat;
 }
 
-.hero-logo-bg img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  user-select: none;
-}
-
-.hero-inner {
+.hero__shell {
   position: relative;
   z-index: 1;
-  max-width: min(38rem, 100% - 1.5rem);
-  margin-inline: auto;
+}
+
+.hero-f {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.hero-f__mast {
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(223, 191, 122, 0.22);
+  max-width: min(100%, 40rem);
 }
 
 .hero .eyebrow {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   color: var(--gold-dim);
-  margin: 0 0 1.35rem;
+  margin: 0 0 0.85rem;
 }
 
 .hero h1 {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(3.25rem, 10vw, 4.75rem);
-  line-height: 1.05;
-  margin: 0 0 0.4rem;
-  letter-spacing: 0.12em;
+  font-size: clamp(2.75rem, 7.5vw, 4.35rem);
+  line-height: 1.02;
+  margin: 0;
+  letter-spacing: 0.1em;
   color: var(--gold-heading);
   font-feature-settings: "kern" 1, "liga" 1;
   text-shadow:
-    0 0 48px rgba(212, 165, 72, 0.42),
-    0 0 3px rgba(14, 12, 10, 0.95),
-    0 2px 4px rgba(0, 0, 0, 0.55);
+    0 0 40px rgba(212, 165, 72, 0.35),
+    0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.hero-f__body {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  align-items: center;
+}
+
+.hero-f__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 38rem;
+}
+
+.hero-quote {
+  margin: 0 0 1.1rem;
+  padding: 0 0 0 1rem;
+  border-left: 2px solid var(--gold-dim);
+}
+
+.hero-quote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--text-muted);
 }
 
 .hero-tagline {
   margin: 0 0 1.35rem;
-  font-size: clamp(0.95rem, 2.4vw, 1.08rem);
-  line-height: 1.55;
+  font-size: clamp(0.95rem, 2vw, 1.06rem);
+  line-height: 1.6;
   color: var(--text);
   font-weight: 500;
-}
-
-.hero .lead {
-  margin: 0 0 1.35rem;
-  color: var(--text-muted);
-  font-size: 1.05rem;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+  margin-bottom: 1.25rem;
 }
 
-.hero-note {
-  font-size: 0.85rem;
-  color: var(--gold-muted);
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.55rem;
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-trust li {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--gold-muted);
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  background: rgba(223, 191, 122, 0.06);
+}
+
+.hero-f__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+}
+
+.hero-f__mark {
+  display: block;
+  width: min(100%, clamp(16rem, 34vw, 24rem));
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+@media (min-width: 900px) {
+  .hero-f__body {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4.5vw, 3.5rem);
+  }
+
+  .hero-f__mast {
+    max-width: min(72%, 46rem);
+  }
+
+  .hero-f-accent {
+    background:
+      linear-gradient(var(--gold-line), var(--gold-line)) max(1.25rem, calc((100% - min(1100px, 100% - 2.5rem)) / 2))
+        clamp(6.5rem, 11vw, 8rem) / min(52%, 34rem) 1px no-repeat,
+      linear-gradient(var(--gold-line), var(--gold-line)) max(1.25rem, calc((100% - min(1100px, 100% - 2.5rem)) / 2))
+        clamp(6.5rem, 11vw, 8rem) / 1px min(52%, 18rem) no-repeat,
+      linear-gradient(var(--gold-line), var(--gold-line)) max(1.25rem, calc((100% - min(1100px, 100% - 2.5rem)) / 2))
+        clamp(13rem, 18vw, 15.5rem) / min(34%, 16rem) 1px no-repeat;
+  }
+}
+
+@media (max-width: 899px) {
+  .hero {
+    text-align: left;
+  }
+
+  .hero-f-accent {
+    opacity: 0.35;
+    background:
+      linear-gradient(var(--gold-line), var(--gold-line)) 1.25rem 5.25rem / calc(100% - 2.5rem) 1px no-repeat,
+      linear-gradient(var(--gold-line), var(--gold-line)) 1.25rem 5.25rem / 1px 9rem no-repeat,
+      linear-gradient(var(--gold-line), var(--gold-line)) 1.25rem 11.5rem / min(72%, 16rem) 1px no-repeat;
+  }
+
 }
 
 /* Кнопки */
@@ -1394,7 +1502,8 @@ main {
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--stone);
-  --compare-pct: 50%;
+  container-type: inline-size;
+  --compare-pct: 50;
   /* Свайп по шторке без ухода жеста в вертикальный скролл страницы */
   touch-action: none;
 }
@@ -1414,16 +1523,31 @@ main {
   z-index: 0;
 }
 
-.compare__img--before {
+.compare__before-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
   z-index: 1;
-  clip-path: polygon(0 0, var(--compare-pct, 50%) 0, var(--compare-pct, 50%) 100%, 0 100%);
+  width: calc(var(--compare-pct) * 1%);
+  overflow: hidden;
+}
+
+.compare__img--before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100cqw;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
 }
 
 .compare__divider {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: var(--compare-pct, 50%);
+  left: calc(var(--compare-pct) * 1%);
   width: 3px;
   margin-left: -1.5px;
   z-index: 2;
